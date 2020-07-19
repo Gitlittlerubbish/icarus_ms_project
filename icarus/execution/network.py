@@ -142,6 +142,16 @@ class NetworkView(object):
         """
         return self.model.shortest_path
 
+    def peek_next_event(self):
+        """Return the next (soonest) event in the eventQ
+        """
+        return self.model.eventQ[0] if len(self.model.eventQ) > 0 else None
+
+    def eventQ(self):
+        """Return the eventQ
+        """
+        return self.model.eventQ
+
     def cluster(self, v):
         """Return cluster to which a node belongs, if any
 
@@ -411,6 +421,8 @@ class NetworkModel(object):
         self.removed_caches = {}
         self.removed_local_caches = {}
 
+        # A priority queue of events
+        self.eventQ = []
 
 class NetworkController(object):
     """Network controller
@@ -432,6 +444,23 @@ class NetworkController(object):
         self.model = model
         self.collector = None
 
+    def add_event(self, event):
+        """ Add an event to the eventQ
+        Parameters
+        ----------
+        event : a new event
+            a dict
+        """
+        self.model.eventQ.append(event)
+        sorted(self.model.eventQ, key = lambda i: i['t_event'])
+
+    def pop_next_event(self):
+        """
+        Remove next event from the eventQ
+        """
+        event = self.model.eventQ.pop(0)
+        return event
+
     def attach_collector(self, collector):
         """Attach a data collector to which all events will be reported.
 
@@ -445,6 +474,7 @@ class NetworkController(object):
     def detach_collector(self):
         """Detach the data collector."""
         self.collector = None
+
 
     def start_session(self, timestamp, receiver, content, log):
         """Instruct the controller to start a new session (i.e. the retrieval
@@ -468,6 +498,25 @@ class NetworkController(object):
                             log=log)
         if self.collector is not None and self.session['log']:
             self.collector.start_session(timestamp, receiver, content)
+
+    def start_flow_session(self, timestamp, receiver, content, flow, log):
+        """Instruct the controller to start a new session (i.e. the retrieval
+        of a content).
+
+        Parameters
+        ----------
+        timestamp : int
+            The timestamp of the event
+        receiver : any hashable type
+            The receiver node requesting a content
+        content : any hashable type
+            The content identifier requested by the receiver
+        log : bool
+            *True* if this session needs to be reported to the collector,
+            *False* otherwise
+        """
+        if self.collector is not None and log:
+            self.collector.start_flow_session(timestamp, receiver, content, flow)
 
     def forward_request_path(self, s, t, path=None, main_path=True):
         """Forward a request from node *s* to node *t* over the provided path.
@@ -512,6 +561,23 @@ class NetworkController(object):
         for u, v in path_links(path):
             self.forward_content_hop(u, v, main_path)
 
+    def forward_request_hop_flow(self, u, v, flow, log, main_path=True):
+        """Forward a request over link  u -> v.
+
+        Parameters
+        ----------
+        u : any hashable type
+            Origin node
+        v : any hashable type
+            Destination node
+        main_path : bool, optional
+            If *True*, indicates that link link is on the main path that will
+            lead to hit a content. It is normally used to calculate latency
+            correctly in multicast cases. Default value is *True*
+        """
+        if self.collector is not None and log:
+            self.collector.request_hop_flow(u, v, flow, main_path)
+
     def forward_request_hop(self, u, v, main_path=True):
         """Forward a request over link  u -> v.
 
@@ -528,6 +594,24 @@ class NetworkController(object):
         """
         if self.collector is not None and self.session['log']:
             self.collector.request_hop(u, v, main_path)
+
+    def forward_content_hop_flow(self, u, v, flow, log, main_path=True):
+        """Forward a content over link  u -> v.
+
+        Parameters
+        ----------
+        u : any hashable type
+            Origin node
+        v : any hashable type
+            Destination node
+        main_path : bool, optional
+            If *True*, indicates that this link is being traversed by content
+            that will be delivered to the receiver. This is needed to
+            calculate latency correctly in multicast cases. Default value is
+            *True*
+        """
+        if self.collector is not None and log:
+            self.collector.content_hop_flow(u, v, flow, main_path)
 
     def forward_content_hop(self, u, v, main_path=True):
         """Forward a content over link  u -> v.
@@ -547,7 +631,7 @@ class NetworkController(object):
         if self.collector is not None and self.session['log']:
             self.collector.content_hop(u, v, main_path)
 
-    def put_content(self, node):
+    def put_content_flow(self, node, content, flow):
         """Store content in the specified node.
 
         The node must have a cache stack and the actual insertion of the
@@ -566,7 +650,32 @@ class NetworkController(object):
             The evicted object or *None* if no contents were evicted.
         """
         if node in self.model.cache:
-            return self.model.cache[node].put(self.session['content'])
+            return self.model.cache[node].put(content)
+
+    def put_content(self, node, content=None):
+        """Store content in the specified node.
+
+        The node must have a cache stack and the actual insertion of the
+        content is executed according to the caching policy. If the caching
+        policy has a selective insertion policy, then content may not be
+        inserted.
+
+        Parameters
+        ----------
+        node : any hashable type
+            The node where the content is inserted
+
+        Returns
+        -------
+        evicted : any hashable type
+            The evicted object or *None* if no contents were evicted.
+        """
+        if content is None:
+            if node in self.model.cache:
+                return self.model.cache[node].put(self.session['content'])
+        else:
+            if node in self.model.cache:
+                return self.model.cache[node].put(content)
 
     def get_content(self, node):
         """Get a content from a server or a cache.
@@ -598,6 +707,36 @@ class NetworkController(object):
         else:
             return False
 
+    def get_content_flow(self, node, content, flow, log):
+        """Get a content from a server or a cache.
+
+        Parameters
+        ----------
+        node : any hashable type
+            The node where the content is retrieved
+
+        Returns
+        -------
+        content : bool
+            True if the content is available, False otherwise
+        """
+        if node in self.model.cache:
+            cache_hit = self.model.cache[node].get(content)
+            if cache_hit:
+                if log:
+                    self.collector.cache_hit_flow(node, content, flow)
+            else:
+                if log:
+                    self.collector.cache_miss_flow(node, content, flow)
+            return cache_hit
+        name, props = fnss.get_stack(self.model.topology, node)
+        if name == 'source' and content in props['contents']:
+            if self.collector is not None and log:
+                self.collector.server_hit_flow(node, content, flow)
+            return True
+        else:
+            return False
+
     def remove_content(self, node):
         """Remove the content being handled from the cache
 
@@ -613,6 +752,17 @@ class NetworkController(object):
         """
         if node in self.model.cache:
             return self.model.cache[node].remove(self.session['content'])
+
+    def end_flow_session(self, flow, log, success=True):
+        """Close a session
+
+        Parameters
+        ----------
+        success : bool, optional
+            *True* if the session was completed successfully, *False* otherwise
+        """
+        if self.collector is not None and log:
+            self.collector.end_flow_session(flow, success)
 
     def end_session(self, success=True):
         """Close a session

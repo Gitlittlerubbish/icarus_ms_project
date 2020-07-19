@@ -62,7 +62,36 @@ class DataCollector(object):
         """
         pass
 
+    def start_flow_session(self, timestamp, receiver, content, flow):
+        """Notifies the collector that a new network session started.
+
+        A session refers to the retrieval of a content from a receiver, from
+        the issuing of a content request to the delivery of the content.
+
+        Parameters
+        ----------
+        timestamp : int
+            The timestamp of the event
+        receiver : any hashable type
+            The receiver node requesting a content
+        content : any hashable type
+            The content identifier requested by the receiver
+        """
+
+        pass
+
     def cache_hit(self, node):
+        """Reports that the requested content has been served by the cache at
+        node *node*.
+
+        Parameters
+        ----------
+        node : any hashable type
+            The node whose cache served the content
+        """
+        pass
+    
+    def cache_hit_flow(self, node, content, flow):
         """Reports that the requested content has been served by the cache at
         node *node*.
 
@@ -83,7 +112,29 @@ class DataCollector(object):
             The node whose cache served the content
         """
         pass
+    
+    def cache_miss_flow(self, node, content, flow):
+        """Reports that the cache at node *node* has been looked up for
+        requested content but there was a cache miss.
 
+        Parameters
+        ----------
+        node : any hashable type
+            The node whose cache served the content
+        """
+        pass
+
+    def server_hit_flow(self, node, content, flow):
+        """Reports that the requested content has been served by the server at
+        node *node*.
+
+        Parameters
+        ----------
+        node : any hashable type
+            The server node which served the content
+        """
+        pass
+    
     def server_hit(self, node):
         """Reports that the requested content has been served by the server at
         node *node*.
@@ -96,6 +147,22 @@ class DataCollector(object):
         pass
 
     def request_hop(self, u, v, main_path=True):
+        """Reports that a request has traversed the link *(u, v)*
+
+        Parameters
+        ----------
+        u : any hashable type
+            Origin node
+        v : any hashable type
+            Destination node
+        main_path : bool, optional
+            If *True*, indicates that link link is on the main path that will
+            lead to hit a content. It is normally used to calculate latency
+            correctly in multicast cases. Default value is *True*
+        """
+        pass
+
+    def request_hop_flow(self, u, v, flow, main_path=True):
         """Reports that a request has traversed the link *(u, v)*
 
         Parameters
@@ -127,8 +194,37 @@ class DataCollector(object):
             *True*
         """
         pass
+    
+    def content_hop_flow(self, u, v, flow, main_path=True):
+        """Reports that a content has traversed the link *(u, v)*
+
+        Parameters
+        ----------
+        u : any hashable type
+            Origin node
+        v : any hashable type
+            Destination node
+        main_path : bool, optional
+            If *True*, indicates that this link is being traversed by content
+            that will be delivered to the receiver. This is needed to
+            calculate latency correctly in multicast cases. Default value is
+            *True*
+        """
+        pass
 
     def end_session(self, success=True):
+        """Reports that the session is closed, i.e. the content has been
+        successfully delivered to the receiver or a failure blocked the
+        execution of the request
+
+        Parameters
+        ----------
+        success : bool, optional
+            *True* if the session was completed successfully, *False* otherwise
+        """
+        pass
+    
+    def end_flow_session(self, flow, success=True):
         """Reports that the session is closed, i.e. the content has been
         successfully delivered to the receiver or a failure blocked the
         execution of the request
@@ -164,8 +260,7 @@ class CollectorProxy(DataCollector):
     dispatching events of interests to concrete collectors.
     """
 
-    EVENTS = ('start_session', 'end_session', 'cache_hit', 'cache_miss', 'server_hit',
-              'request_hop', 'content_hop', 'results')
+    EVENTS = ('start_session', 'start_flow_session', 'end_session', 'end_flow_session', 'cache_hit', 'cache_hit_flow', 'cache_miss', 'cache_miss_flow', 'server_hit', 'server_hit_flow', 'request_hop', 'request_hop_flow', 'content_hop', 'content_hop_flow','results')
 
     def __init__(self, view, collectors):
         """Constructor
@@ -185,6 +280,11 @@ class CollectorProxy(DataCollector):
     def start_session(self, timestamp, receiver, content):
         for c in self.collectors['start_session']:
             c.start_session(timestamp, receiver, content)
+    
+    @inheritdoc(DataCollector)
+    def start_flow_session(self, timestamp, receiver, content, flow):
+        for c in self.collectors['start_flow_session']:
+            c.start_flow_session(timestamp, receiver, content, flow)
 
     @inheritdoc(DataCollector)
     def cache_hit(self, node):
@@ -192,34 +292,63 @@ class CollectorProxy(DataCollector):
             c.cache_hit(node)
 
     @inheritdoc(DataCollector)
+    def cache_hit_flow(self, node, content, flow):
+        for c in self.collectors['cache_hit']:
+            c.cache_hit_flow(node, content, flow)
+
+    @inheritdoc(DataCollector)
     def cache_miss(self, node):
         for c in self.collectors['cache_miss']:
             c.cache_miss(node)
+    
+    @inheritdoc(DataCollector)
+    def cache_miss_flow(self, node, content, flow):
+        for c in self.collectors['cache_miss']:
+            c.cache_miss_flow(node, content, flow)
 
     @inheritdoc(DataCollector)
     def server_hit(self, node):
         for c in self.collectors['server_hit']:
             c.server_hit(node)
+    
+    @inheritdoc(DataCollector)
+    def server_hit_flow(self, node, content, flow):
+        for c in self.collectors['server_hit_flow']:
+            c.server_hit(node, content, flow)
 
     @inheritdoc(DataCollector)
     def request_hop(self, u, v, main_path=True):
         for c in self.collectors['request_hop']:
             c.request_hop(u, v, main_path)
+    
+    @inheritdoc(DataCollector)
+    def request_hop_flow(self, u, v, flow, main_path=True):
+        for c in self.collectors['request_hop']:
+            c.request_hop_flow(u, v, flow,  main_path)
 
     @inheritdoc(DataCollector)
     def content_hop(self, u, v, main_path=True):
         for c in self.collectors['content_hop']:
             c.content_hop(u, v, main_path)
+    
+    @inheritdoc(DataCollector)
+    def content_hop_flow(self, u, v, flow, main_path=True):
+        for c in self.collectors['content_hop']:
+            c.content_hop_flow(u, v, flow, main_path)
 
     @inheritdoc(DataCollector)
     def end_session(self, success=True):
         for c in self.collectors['end_session']:
             c.end_session(success)
+    
+    @inheritdoc(DataCollector)
+    def end_flow_session(self, flow, success=True):
+        for c in self.collectors['end_session']:
+            c.end_session(flow, success)
 
     @inheritdoc(DataCollector)
     def results(self):
         return Tree(**{c.name: c.results() for c in self.collectors['results']})
-
 
 @register_data_collector('LINK_LOAD')
 class LinkLoadCollector(DataCollector):
@@ -309,10 +438,18 @@ class LatencyCollector(DataCollector):
         if cdf:
             self.latency_data = collections.deque()
 
+        self.sess_latency_flow = {}
+        
+
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
         self.sess_count += 1
         self.sess_latency = 0.0
+    
+    @inheritdoc(DataCollector)
+    def start_flow_session(self, timestamp, receiver, content, flow):
+        self.sess_count += 1
+        self.sess_latency_flow[flow] = 0.0
 
     @inheritdoc(DataCollector)
     def request_hop(self, u, v, main_path=True):
@@ -320,9 +457,19 @@ class LatencyCollector(DataCollector):
             self.sess_latency += self.view.link_delay(u, v)
 
     @inheritdoc(DataCollector)
+    def request_hop_flow(self, u, v, flow, main_path=True):
+        if main_path:
+            self.sess_latency_flow[flow] += self.view.link_delay(u, v)
+
+    @inheritdoc(DataCollector)
     def content_hop(self, u, v, main_path=True):
         if main_path:
             self.sess_latency += self.view.link_delay(u, v)
+    
+    @inheritdoc(DataCollector)
+    def content_hop_flow(self, u, v, flow, main_path=True):
+        if main_path:
+            self.sess_latency_flow[flow] += self.view.link_delay(u, v, flow)
 
     @inheritdoc(DataCollector)
     def end_session(self, success=True):
@@ -331,13 +478,63 @@ class LatencyCollector(DataCollector):
         if self.cdf:
             self.latency_data.append(self.sess_latency)
         self.latency += self.sess_latency
+    
+    @inheritdoc(DataCollector)
+    def end_flow_session(self, flow, success=True):
+        if not success:
+            return
+        if self.cdf:
+            self.latency_data.append(self.sess_latency_flow[flow])
+        self.latency += self.sess_latency_flow[flow]
+        del self.sess_latency_flow[flow]
 
     @inheritdoc(DataCollector)
     def results(self):
         results = Tree({'MEAN': self.latency / self.sess_count})
         if self.cdf:
             results['CDF'] = cdf(self.latency_data)
+
         return results
+
+
+@register_data_collector('CACHE_HIT_RATIO')
+class CacheHitRatioCollector(DataCollector):
+    """Collector measuring the cache hit ratio, i.e. the portion of content
+    requests served by a cache.
+    """
+
+    def __init__(self, view, off_path_hits=False, per_node=True, content_hits=False):
+        """Constructor
+
+        Parameters
+        ----------
+        view : NetworkView
+            The NetworkView instance
+        off_path_hits : bool, optional
+            If *True* also records cache hits from caches not on located on the
+            shortest path. This metric may be relevant only for some strategies
+        content_hits : bool, optional
+            If *True* also records cache hits per content instead of just
+            globally
+        """
+        self.view = view
+        self.off_path_hits = off_path_hits
+        self.per_node = per_node
+        self.cont_hits = content_hits
+        self.sess_count = 0
+        self.cache_hits = 0
+        self.serv_hits = 0
+        if off_path_hits:
+            self.off_path_hit_count = 0
+        if per_node:
+            self.per_node_cache_hits = collections.defaultdict(int)
+            self.per_node_server_hits = collections.defaultdict(int)
+        if content_hits:
+            self.curr_cont = None
+            self.cont_cache_hits = collections.defaultdict(int)
+            self.cont_serv_hits = collections.defaultdict(int)
+
+    @inheritdoc(DataCollector)
 
 
 @register_data_collector('CACHE_HIT_RATIO')
