@@ -143,7 +143,8 @@ class NetworkView(object):
         return self.model.shortest_path
 
     def peek_next_event(self):
-        """Return the next (soonest) event in the eventQ
+        """Return the next (soonest) event in the eventQ without removing the 
+           event from the eventQ
         """
         return self.model.eventQ[0] if len(self.model.eventQ) > 0 else None
 
@@ -451,12 +452,13 @@ class NetworkController(object):
         event : a new event
             a dict
         """
-        self.model.eventQ.append(event)
+        self.model.eventQ.insert(0,event)
+        # Sort events in the eventQ by "time of event" (t_event)
         sorted(self.model.eventQ, key = lambda i: i['t_event'])
 
     def pop_next_event(self):
         """
-        Remove next event from the eventQ
+        Remove the first (soonest) event from the eventQ
         """
         event = self.model.eventQ.pop(0)
         return event

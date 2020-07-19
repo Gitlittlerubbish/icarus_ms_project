@@ -12,11 +12,11 @@ LOG_LEVEL = 'INFO'
 
 # If True, executes simulations in parallel using multiple processes
 # to take advantage of multicore CPUs
-PARALLEL_EXECUTION = True
+PARALLEL_EXECUTION = False
 
 # Number of processes used to run simulations in parallel.
 # This option is ignored if PARALLEL_EXECUTION = False
-N_PROCESSES = cpu_count()
+N_PROCESSES = 1
 
 # Number of times each experiment is replicated
 N_REPLICATIONS = 1
@@ -47,8 +47,8 @@ experiment['topology']['delay'] = 10
 
 # Set workload
 experiment['workload'] = {
-         'name':       'STATIONARY',
-         'n_contents': 10 ** 5,
+         'name':       'STATIONARY_PACKET_LEVEL',
+         'n_contents': 10 ** 4,
          'n_warmup':   10 ** 2,
          'n_measured': 4 * 10 ** 2,
          'alpha':      1.0,
@@ -57,7 +57,7 @@ experiment['workload'] = {
 
 # Set cache placement
 experiment['cache_placement']['name'] = 'UNIFORM'
-experiment['cache_placement']['network_cache'] = 0.01
+experiment['cache_placement']['network_cache'] = 0.05
 
 # Set content placement
 experiment['content_placement']['name'] = 'UNIFORM'
@@ -66,7 +66,7 @@ experiment['content_placement']['name'] = 'UNIFORM'
 experiment['cache_policy']['name'] = 'LRU'
 
 # Set caching meta-policy
-experiment['strategy']['name'] = 'LCE'
+experiment['strategy']['name'] = 'LCE_PKT_LEVEL'
 
 # Description of the experiment
 experiment['desc'] = "Line topology with 10 nodes"

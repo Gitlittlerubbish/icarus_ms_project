@@ -314,7 +314,7 @@ class CollectorProxy(DataCollector):
     @inheritdoc(DataCollector)
     def server_hit_flow(self, node, content, flow):
         for c in self.collectors['server_hit_flow']:
-            c.server_hit(node, content, flow)
+            c.server_hit_flow(node, content, flow)
 
     @inheritdoc(DataCollector)
     def request_hop(self, u, v, main_path=True):
@@ -344,7 +344,7 @@ class CollectorProxy(DataCollector):
     @inheritdoc(DataCollector)
     def end_flow_session(self, flow, success=True):
         for c in self.collectors['end_session']:
-            c.end_session(flow, success)
+            c.end_flow_session(flow, success)
 
     @inheritdoc(DataCollector)
     def results(self):
@@ -469,7 +469,7 @@ class LatencyCollector(DataCollector):
     @inheritdoc(DataCollector)
     def content_hop_flow(self, u, v, flow, main_path=True):
         if main_path:
-            self.sess_latency_flow[flow] += self.view.link_delay(u, v, flow)
+            self.sess_latency_flow[flow] += self.view.link_delay(u, v)
 
     @inheritdoc(DataCollector)
     def end_session(self, success=True):
@@ -496,7 +496,6 @@ class LatencyCollector(DataCollector):
 
         return results
 
-
 @register_data_collector('CACHE_HIT_RATIO')
 class CacheHitRatioCollector(DataCollector):
     """Collector measuring the cache hit ratio, i.e. the portion of content
@@ -526,6 +525,7 @@ class CacheHitRatioCollector(DataCollector):
         self.serv_hits = 0
         if off_path_hits:
             self.off_path_hit_count = 0
+            self.curr_path_flow = {}
         if per_node:
             self.per_node_cache_hits = collections.defaultdict(int)
             self.per_node_server_hits = collections.defaultdict(int)
@@ -533,46 +533,8 @@ class CacheHitRatioCollector(DataCollector):
             self.curr_cont = None
             self.cont_cache_hits = collections.defaultdict(int)
             self.cont_serv_hits = collections.defaultdict(int)
-
-    @inheritdoc(DataCollector)
-
-
-@register_data_collector('CACHE_HIT_RATIO')
-class CacheHitRatioCollector(DataCollector):
-    """Collector measuring the cache hit ratio, i.e. the portion of content
-    requests served by a cache.
-    """
-
-    def __init__(self, view, off_path_hits=False, per_node=True, content_hits=False):
-        """Constructor
-
-        Parameters
-        ----------
-        view : NetworkView
-            The NetworkView instance
-        off_path_hits : bool, optional
-            If *True* also records cache hits from caches not on located on the
-            shortest path. This metric may be relevant only for some strategies
-        content_hits : bool, optional
-            If *True* also records cache hits per content instead of just
-            globally
-        """
-        self.view = view
-        self.off_path_hits = off_path_hits
-        self.per_node = per_node
-        self.cont_hits = content_hits
-        self.sess_count = 0
-        self.cache_hits = 0
-        self.serv_hits = 0
-        if off_path_hits:
-            self.off_path_hit_count = 0
-        if per_node:
-            self.per_node_cache_hits = collections.defaultdict(int)
-            self.per_node_server_hits = collections.defaultdict(int)
-        if content_hits:
-            self.curr_cont = None
-            self.cont_cache_hits = collections.defaultdict(int)
-            self.cont_serv_hits = collections.defaultdict(int)
+            
+            self.curr_cont_flow = {}
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
@@ -582,14 +544,33 @@ class CacheHitRatioCollector(DataCollector):
             self.curr_path = self.view.shortest_path(receiver, source)
         if self.cont_hits:
             self.curr_cont = content
+    
+    @inheritdoc(DataCollector)
+    def start_flow_session(self, timestamp, receiver, content, flow):
+        self.sess_count += 1
+        if self.off_path_hits:
+            source = self.view.content_source(content)
+            self.curr_path_flow[flow] = self.view.shortest_path(receiver, source)
+        if self.cont_hits:
+            self.curr_cont_flow[flow] = content
 
     @inheritdoc(DataCollector)
     def cache_hit(self, node):
         self.cache_hits += 1
-        if self.off_path_hits and node not in self.curr_path:
+        if self.off_path_hits and node not in self.curr_path_flow[flow]:
             self.off_path_hit_count += 1
         if self.cont_hits:
             self.cont_cache_hits[self.curr_cont] += 1
+        if self.per_node:
+            self.per_node_cache_hits[node] += 1
+
+    @inheritdoc(DataCollector)
+    def cache_hit_flow(self, node, content, flow):
+        self.cache_hits += 1
+        if self.off_path_hits and node not in self.curr_path:
+            self.off_path_hit_count += 1
+        if self.cont_hits:
+            self.cont_cache_hits[self.curr_cont_flow[flow]] += 1
         if self.per_node:
             self.per_node_cache_hits[node] += 1
 
@@ -598,6 +579,21 @@ class CacheHitRatioCollector(DataCollector):
         self.serv_hits += 1
         if self.cont_hits:
             self.cont_serv_hits[self.curr_cont] += 1
+        if self.per_node:
+            self.per_node_server_hits[node] += 1
+    
+    @inheritdoc(DataCollector)
+    def end_flow_session(self, flow, success=True):
+        if self.cont_hits:
+            del self.curr_cont_flow[flow]
+        if self.off_path_hits:
+            del self.curr_path_flow[flow]
+    
+    @inheritdoc(DataCollector)
+    def server_hit_flow(self, node, content, flow):
+        self.serv_hits += 1
+        if self.cont_hits:
+            self.cont_serv_hits[self.curr_cont_flow[flow]] += 1
         if self.per_node:
             self.per_node_server_hits[node] += 1
 

@@ -46,6 +46,9 @@ def exec_experiment(topology, workload, netconf, strategy, cache_policy, collect
     model = NetworkModel(topology, cache_policy, **netconf)
     view = NetworkView(model)
     controller = NetworkController(model)
+    
+    workload.view = view
+    workload.controller = controller
 
     collectors_inst = [DATA_COLLECTOR[name](view, **params)
                        for name, params in collectors.items()]

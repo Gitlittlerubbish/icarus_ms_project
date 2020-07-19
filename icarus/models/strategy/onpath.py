@@ -13,6 +13,7 @@ __all__ = [
        'Partition',
        'Edge',
        'LeaveCopyEverywhere',
+       'LeaveCopyEverywherePacketLevel',
        'LeaveCopyDown',
        'ProbCache',
        'CacheLessForMore',
@@ -115,7 +116,7 @@ class Edge(Strategy):
         self.controller.end_session()
 
 @register_strategy('LCE_PKT_LEVEL')
-class LeaveCopyEverywhere(Strategy):
+class LeaveCopyEverywherePacketLevel(Strategy):
     """Leave Copy Everywhere (LCE) packet-level strategy.
 
     In this strategy a copy of a content is replicated at any cache on the
@@ -124,7 +125,7 @@ class LeaveCopyEverywhere(Strategy):
 
     @inheritdoc(Strategy)
     def __init__(self, view, controller, **kwargs):
-        super(LeaveCopyEverywhere, self).__init__(view, controller)
+        super(LeaveCopyEverywherePacketLevel, self).__init__(view, controller)
 
     @inheritdoc(Strategy)
     def process_event(self, time, receiver, content, node, flow, pkt_type, log):
@@ -132,21 +133,22 @@ class LeaveCopyEverywhere(Strategy):
         # Route requests to original source and queries caches on the path
         if pkt_type == 'Request':
             if node == receiver:
-                self.controller.start_flow_session(time, receiver, flow, log)
-            if self.view.has_cache(node):
-                if self.controller.get_content_flow(node, content, flow):
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if self.view.has_cache(node) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
                     path = self.view.shortest_path(node, receiver)
                     delay = self.view.link_delay(node, path[1])
                     t_event = time + delay
                     self.controller.forward_request_hop_flow(node, path[1], flow, log)
                     self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
-            else:
-                source = self.view.content_source(content)
-                path = self.view.shortest_path(node, source)
-                delay = self.view.link_delay(node, path[1])
-                t_event = time + delay
-                self.controller.forward_request_hop_flow(node, path[1], flow, log)
-                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                    return
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+
         elif pkt_type == 'Data':
             if node == receiver:
                 self.controller.end_flow_session(flow, log)

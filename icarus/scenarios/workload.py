@@ -110,14 +110,15 @@ class StationaryPacketLevelWorkload(object):
         flow_counter = 0
         t_next_flow = 0.0
 
-        while ( (flow_counter < self.n_warmup + self.n_measured) or len(self.view.eventQ)>0 )   
+        while ( (flow_counter < self.n_warmup + self.n_measured) or len(self.view.eventQ())>0 ):
             t_next_flow += (random.expovariate(self.rate))
             event = self.view.peek_next_event()
-            while event is not None and event['t_event'] < t_next_flow:
+            while (event is not  None) and (event['t_event'] < t_next_flow):
                 event = self.controller.pop_next_event()
                 t_event = event['t_event']
                 del event['t_event']
                 yield(t_event, event)
+                event = self.view.peek_next_event() 
 
             if flow_counter >= (self.n_warmup + self.n_measured):
                 continue
@@ -126,8 +127,8 @@ class StationaryPacketLevelWorkload(object):
             else:
                 receiver = self.receivers[self.receiver_dist.rv() - 1]
             content = int(self.zipf.rv())
-            log = (req_counter >= self.n_warmup)
-            event = {'receiver': receiver, 'content': content, 'node': node, 'flow': flow_counter, 'pkt_type': 'Request', 'log': log}
+            log = (flow_counter >= self.n_warmup)
+            event = {'receiver': receiver, 'content': content, 'node': receiver, 'flow': flow_counter, 'pkt_type': 'Request', 'log': log}
             yield (t_next_flow, event)
             flow_counter += 1
         return
