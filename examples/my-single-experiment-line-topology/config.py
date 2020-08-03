@@ -53,7 +53,7 @@ default['workload'] = {
          'name':       'STATIONARY_PACKET_LEVEL',
          'n_contents': 10 ** 4,
          'n_warmup':   10 ** 2,
-         'n_measured': 4 * 10 ** 2,
+         'n_measured': 4 * 10 ** 5,
          'alpha':      1.0,
          'rate':       1
                        }
