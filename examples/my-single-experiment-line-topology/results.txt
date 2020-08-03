@@ -1,0 +1,137 @@
+EXPERIMENT 1/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.1
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4175
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.4125, 2: 0.005})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.5825})
+    LATENCY
+     * MEAN: 113.3
+
+EXPERIMENT 2/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.2
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.3775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.3775})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.6225})
+    LATENCY
+     * MEAN: 119.6
+
+EXPERIMENT 3/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.3
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.42
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.42})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.58})
+    LATENCY
+     * MEAN: 112.8
+
+EXPERIMENT 4/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.4
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.4
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.395
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.395})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.605})
+    LATENCY
+     * MEAN: 116.8
+
+EXPERIMENT 5/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.5
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.4})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.6})
+    LATENCY
+     * MEAN: 116.0
+
+EXPERIMENT 6/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.6
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.6
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.405
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.405})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.595})
+    LATENCY
+     * MEAN: 115.2
+
+EXPERIMENT 7/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.7
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.43
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.43})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.57})
+    LATENCY
+     * MEAN: 111.2
+
+EXPERIMENT 8/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400, alpha: 1.0, rate: 1
+   * cache_placement -> name: UNIFORM, network_cache: 0.8
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * desc -> Line topology with 10 nodes with network_cache:0.8
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.415
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.415})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.585})
+    LATENCY
+     * MEAN: 113.6
+
+
