@@ -20,6 +20,8 @@ import fnss
 from icarus.registry import CACHE_POLICY
 from icarus.util import iround, path_links
 
+from heapq import heappush, heappop
+
 __all__ = [
     'NetworkModel',
     'NetworkView',
@@ -146,13 +148,13 @@ class NetworkView(object):
         """Return the next (soonest) event in the eventQ without removing the 
            event from the eventQ
         """
-        return self.model.eventQ[0] if len(self.model.eventQ) > 0 else None
+        return self.model.eventQ[0][1] if len(self.model.eventQ) > 0 else None
 
     def eventQ(self):
         """Return the eventQ
         """
         return self.model.eventQ
-
+    
     def cluster(self, v):
         """Return cluster to which a node belongs, if any
 
@@ -424,6 +426,7 @@ class NetworkModel(object):
 
         # A priority queue of events
         self.eventQ = []
+        self.eventTimes = set()
 
 class NetworkController(object):
     """Network controller
@@ -447,20 +450,27 @@ class NetworkController(object):
 
     def add_event(self, event):
         """ Add an event to the eventQ
+        NOTE: sorted() is very inefficient. Therefore a heap (heapq) is used to sort events based on their times (t_event). heapq does not support dicts, but it supports tuples. Therefore, we add (tevent, event) to heap, which sorts tuples by the first element as the key. However, duplicate keys are not supported, therefore an extra check is done for suplicate keys (multiple simultaneous events) and t_events of events are incremented with a very small value, if needed. 
         Parameters
         ----------
         event : a new event
             a dict
         """
-        self.model.eventQ.insert(0,event)
+        while event['t_event'] in self.model.eventTimes:
+            event['t_event'] += 0.0000000001
+
+        self.model.eventTimes.add(event['t_event'])
+        heappush(self.model.eventQ, (event['t_event'], event))
         # Sort events in the eventQ by "time of event" (t_event)
-        sorted(self.model.eventQ, key = lambda i: i['t_event'])
+        # sorted(self.model.eventQ, key = lambda i: i['t_event'])
 
     def pop_next_event(self):
         """
         Remove the first (soonest) event from the eventQ
         """
-        event = self.model.eventQ.pop(0)
+        event = heappop(self.model.eventQ)
+        event = event[1]
+        self.model.eventTimes.remove(event['t_event'])
         return event
 
     def attach_collector(self, collector):
