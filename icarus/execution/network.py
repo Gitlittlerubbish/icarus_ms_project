@@ -21,6 +21,7 @@ from icarus.registry import CACHE_POLICY
 from icarus.util import iround, path_links
 
 from heapq import heappush, heappop
+import time
 
 __all__ = [
     'NetworkModel',
@@ -331,6 +332,23 @@ class NetworkView(object):
         if node in self.model.cache:
             return self.model.cache[node].dump()
 
+    def node_process_delay(self, node):
+        """
+            TEST function: Return the 'get_content_flow()' delay
+        
+            Parameters
+            ----------
+            node : any hashable type
+                The node identifier
+
+            Returns
+            -------
+            node_process_delay : float
+                Duration of the respective node's operation of get()
+        """
+        if node in self.model.node_process_delay:
+            return self.model.node_process_delay[node]
+
 
 class NetworkModel(object):
     """Models the internal state of the network.
@@ -427,6 +445,9 @@ class NetworkModel(object):
         # A priority queue of events
         self.eventQ = []
         self.eventTimes = set()
+
+        # the process delay of nodes
+        self.node_process_delay = {}
 
 class NetworkController(object):
     """Network controller
@@ -732,9 +753,12 @@ class NetworkController(object):
         content : bool
             True if the content is available, False otherwise
         """
+        start_time = time.time()
         if node in self.model.cache:
             cache_hit = self.model.cache[node].get(content)
+            duration = (time.time() - start_time) * 100
             if cache_hit:
+                self.model.node_process_delay[node] = duration # test, currently mean value is about 10 us
                 if log:
                     self.collector.cache_hit_flow(node, content, flow)
             else:
@@ -745,6 +769,8 @@ class NetworkController(object):
         if name == 'source' and content in props['contents']:
             if self.collector is not None and log:
                 self.collector.server_hit_flow(node, content, flow)
+
+            self.model.node_process_delay[node] = 0  # test for server process delay, manually set 0
             return True
         else:
             return False

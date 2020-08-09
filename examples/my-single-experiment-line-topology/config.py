@@ -36,6 +36,7 @@ DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
 
 # Total size of network cache as a fraction of content population
 NETWORK_CACHE = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+# NETWORK_CACHE = [0.1] # only for quicker test
 
 # Queue of experiments
 EXPERIMENT_QUEUE = deque()

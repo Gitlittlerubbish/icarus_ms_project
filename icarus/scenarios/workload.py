@@ -88,6 +88,7 @@ class StationaryPacketLevelWorkload(object):
             raise ValueError('alpha must be positive')
         if beta < 0:
             raise ValueError('beta must be positive')
+        self.topology = topology
         self.receivers = [v for v in topology.nodes()
                      if topology.node[v]['stack'][0] == 'receiver']
         self.zipf = TruncatedZipfDist(alpha, n_contents)
@@ -188,6 +189,7 @@ class StationaryWorkload(object):
             raise ValueError('alpha must be positive')
         if beta < 0:
             raise ValueError('beta must be positive')
+        self.topology = topology
         self.receivers = [v for v in topology.nodes()
                      if topology.node[v]['stack'][0] == 'receiver']
         self.zipf = TruncatedZipfDist(alpha, n_contents)
@@ -260,6 +262,7 @@ class GlobetraffWorkload(object):
         """Constructor"""
         if beta < 0:
             raise ValueError('beta must be positive')
+        self.topology = topology
         self.receivers = [v for v in topology.nodes()
                      if topology.node[v]['stack'][0] == 'receiver']
         self.n_contents = 0

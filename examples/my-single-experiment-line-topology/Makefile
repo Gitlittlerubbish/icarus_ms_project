@@ -12,4 +12,4 @@ run: check_installed
 	icarus run --results $(RESULTS_FILE) $(CONFIG_FILE)
 
 clean:
-	rm -rf $(RESULTS_FILE)
+	rm -rf $(RESULTS_FILE) *.png *.txt

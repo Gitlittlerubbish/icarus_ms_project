@@ -36,7 +36,7 @@ def main():
 
     plt.bar(range(len(MEAN_LATENCY_LIST)), MEAN_LATENCY_LIST, color = 'g', tick_label = tick)
     plt.xlabel('NETWORK_CACHE')
-    plt.ylabel('MEAN_LATENCY')
+    plt.ylabel('MEAN_LATENCY (ms)')
     plt.title('MEAN_LATENCY vs NETWORK_CACHE')
     plt.savefig('MEAN_LATENCY vs NETWORK_CACHE.png')
     plt.show()
