@@ -138,10 +138,8 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if self.view.has_cache(node) or node == source:
                 if self.controller.get_content_flow(node, content, flow, log):
                     path = self.view.shortest_path(node, receiver)
-                    link_delay = self.view.link_delay(node, path[1])
-                    node_process_delay = self.view.node_process_delay(node) # test, add single process cache delay
-                    t_event = time + link_delay + node_process_delay
-                    # t_event = time + link_delay
+                    delay = self.view.link_delay(node, path[1])
+                    t_event = time + delay
                     self.controller.forward_request_hop_flow(node, path[1], flow, log)
                     self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                     return

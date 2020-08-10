@@ -557,7 +557,7 @@ class CacheHitRatioCollector(DataCollector):
     @inheritdoc(DataCollector)
     def cache_hit(self, node):
         self.cache_hits += 1
-        if self.off_path_hits and node not in self.curr_path:
+        if self.off_path_hits and node not in self.curr_path_flow[flow]:
             self.off_path_hit_count += 1
         if self.cont_hits:
             self.cont_cache_hits[self.curr_cont] += 1
@@ -567,7 +567,7 @@ class CacheHitRatioCollector(DataCollector):
     @inheritdoc(DataCollector)
     def cache_hit_flow(self, node, content, flow):
         self.cache_hits += 1
-        if self.off_path_hits and node not in self.curr_path_flow[flow]:
+        if self.off_path_hits and node not in self.curr_path:
             self.off_path_hit_count += 1
         if self.cont_hits:
             self.cont_cache_hits[self.curr_cont_flow[flow]] += 1
