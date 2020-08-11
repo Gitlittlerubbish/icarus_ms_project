@@ -135,14 +135,15 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if self.view.has_cache(node) or node == source:
+            if self.view.has_cache(node) or node == source:     
                 if self.controller.get_content_flow(node, content, flow, log):
-                    path = self.view.shortest_path(node, receiver)
-                    delay = self.view.link_delay(node, path[1])
-                    t_event = time + delay
-                    self.controller.forward_request_hop_flow(node, path[1], flow, log)
-                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                    self.controller.push_node_process_queue(node, flow)
+                    idx = self.view.get_node_process_queue_index(node, flow)
+                    t_event = time + (idx + 1) * 1.11
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
                     return
+
+            # no cache get, forward request to the next node
             path = self.view.shortest_path(node, source)
             delay = self.view.link_delay(node, path[1])
             t_event = time + delay
@@ -160,6 +161,16 @@ class LeaveCopyEverywherePacketLevel(Strategy):
                 delay = self.view.link_delay(node, path[1])
                 t_event = time + delay
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+        
+        elif pkt_type == 'ReadComplete':
+            self.controller.pop_node_process_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            return
+
         else:
             raise ValueError('Invalid packet type')
 

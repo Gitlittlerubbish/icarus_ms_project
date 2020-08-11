@@ -45,6 +45,9 @@ class DataCollector(object):
         """
         self.view = view
 
+    def add_node_process_queue_delay(self, node, flow):
+        pass
+
     def start_session(self, timestamp, receiver, content):
         """Notifies the collector that a new network session started.
 
@@ -260,7 +263,7 @@ class CollectorProxy(DataCollector):
     dispatching events of interests to concrete collectors.
     """
 
-    EVENTS = ('start_session', 'start_flow_session', 'end_session', 'end_flow_session', 'cache_hit', 'cache_hit_flow', 'cache_miss', 'cache_miss_flow', 'server_hit', 'server_hit_flow', 'request_hop', 'request_hop_flow', 'content_hop', 'content_hop_flow','results')
+    EVENTS = ('add_node_process_queue_delay', 'start_session', 'start_flow_session', 'end_session', 'end_flow_session', 'cache_hit', 'cache_hit_flow', 'cache_miss', 'cache_miss_flow', 'server_hit', 'server_hit_flow', 'request_hop', 'request_hop_flow', 'content_hop', 'content_hop_flow','results')
 
     def __init__(self, view, collectors):
         """Constructor
@@ -275,6 +278,11 @@ class CollectorProxy(DataCollector):
         self.view = view
         self.collectors = {e: [c for c in collectors if e in type(c).__dict__]
                            for e in self.EVENTS}
+
+    @inheritdoc(DataCollector)
+    def add_node_process_queue_delay(self, node, flow):
+        for c in self.collectors['add_node_process_queue_delay']:
+            c.add_node_process_queue_delay(node, flow)
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
@@ -323,7 +331,7 @@ class CollectorProxy(DataCollector):
     
     @inheritdoc(DataCollector)
     def request_hop_flow(self, u, v, flow, main_path=True):
-        for c in self.collectors['request_hop']:
+        for c in self.collectors['request_hop_flow']:
             c.request_hop_flow(u, v, flow,  main_path)
 
     @inheritdoc(DataCollector)
@@ -333,7 +341,7 @@ class CollectorProxy(DataCollector):
     
     @inheritdoc(DataCollector)
     def content_hop_flow(self, u, v, flow, main_path=True):
-        for c in self.collectors['content_hop']:
+        for c in self.collectors['content_hop_flow']:
             c.content_hop_flow(u, v, flow, main_path)
 
     @inheritdoc(DataCollector)
@@ -343,7 +351,7 @@ class CollectorProxy(DataCollector):
     
     @inheritdoc(DataCollector)
     def end_flow_session(self, flow, success=True):
-        for c in self.collectors['end_session']:
+        for c in self.collectors['end_flow_session']:
             c.end_flow_session(flow, success)
 
     @inheritdoc(DataCollector)
@@ -440,6 +448,9 @@ class LatencyCollector(DataCollector):
 
         self.sess_latency_flow = {}
         
+    @inheritdoc(DataCollector)
+    def add_node_process_queue_delay(self, node, flow):
+        self.sess_latency_flow[flow] += (self.view.get_node_process_queue_index(node, flow) + 1) * 5.11 # test, manually set, need to be fixed later
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
@@ -557,7 +568,7 @@ class CacheHitRatioCollector(DataCollector):
     @inheritdoc(DataCollector)
     def cache_hit(self, node):
         self.cache_hits += 1
-        if self.off_path_hits and node not in self.curr_path_flow[flow]:
+        if self.off_path_hits and node not in self.curr_path:
             self.off_path_hit_count += 1
         if self.cont_hits:
             self.cont_cache_hits[self.curr_cont] += 1
@@ -567,7 +578,7 @@ class CacheHitRatioCollector(DataCollector):
     @inheritdoc(DataCollector)
     def cache_hit_flow(self, node, content, flow):
         self.cache_hits += 1
-        if self.off_path_hits and node not in self.curr_path:
+        if self.off_path_hits and node not in self.curr_path_flow[flow]:
             self.off_path_hit_count += 1
         if self.cont_hits:
             self.cont_cache_hits[self.curr_cont_flow[flow]] += 1

@@ -331,6 +331,9 @@ class NetworkView(object):
         if node in self.model.cache:
             return self.model.cache[node].dump()
 
+    def get_node_process_queue_index(self, node, flow):
+        return self.model.nodes_process_queues[node].index(flow)
+
 
 class NetworkModel(object):
     """Models the internal state of the network.
@@ -428,6 +431,9 @@ class NetworkModel(object):
         self.eventQ = []
         self.eventTimes = set()
 
+        # A dict of FIFO  queues of nodes processing (get content operations)
+        self.nodes_process_queues = {}
+
 class NetworkController(object):
     """Network controller
 
@@ -463,6 +469,11 @@ class NetworkController(object):
         heappush(self.model.eventQ, (event['t_event'], event))
         # Sort events in the eventQ by "time of event" (t_event)
         # sorted(self.model.eventQ, key = lambda i: i['t_event'])
+
+        # add node process delay penalty
+        if event['pkt_type'] == 'ReadComplete':
+            if self.collector is not None and event['log']:
+                self.collector.add_node_process_queue_delay(event['node'], event['flow'])
 
     def pop_next_event(self):
         """
@@ -734,6 +745,8 @@ class NetworkController(object):
         """
         if node in self.model.cache:
             cache_hit = self.model.cache[node].get(content)
+
+
             if cache_hit:
                 if log:
                     self.collector.cache_hit_flow(node, content, flow)
@@ -748,6 +761,16 @@ class NetworkController(object):
             return True
         else:
             return False
+
+    def push_node_process_queue(self, node, flow):
+        if node in self.model.nodes_process_queues:
+            self.model.nodes_process_queues[node].append(flow)
+        else:
+            self.model.nodes_process_queues[node] = []
+            self.model.nodes_process_queues[node].append(flow)
+        
+    def pop_node_process_queue(self, node, flow):
+        self.model.nodes_process_queues[node].remove(flow)
 
     def remove_content(self, node):
         """Remove the content being handled from the cache
