@@ -6,14 +6,15 @@ EXPERIMENT 1/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.1
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.1 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.4552925
-     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.0085175, 6: 0.0084425, 7: 0.0083525, 4: 0.008295, 8: 0.00849, 3: 0.008415, 2: 0.0111575, 1: 0.3936225})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.5447075})
+     * MEAN: 0.4542325
+     * PER_NODE_CACHE_HIT_RATIO: Tree({3: 0.0085475, 4: 0.0083225, 5: 0.0085075, 2: 0.0111175, 1: 0.3926175, 6: 0.008325, 8: 0.0084425, 7: 0.0083525})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.5457675})
     LATENCY
-     * MEAN: 122.92676882437036
+     * MEAN: 116.393675
 
 EXPERIMENT 2/8:
   CONFIGURATION:
@@ -23,14 +24,15 @@ EXPERIMENT 2/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.2
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.2 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.5255775
-     * PER_NODE_CACHE_HIT_RATIO: Tree({3: 0.004055, 4: 0.0040925, 5: 0.0039075, 2: 0.011335, 6: 0.00402, 7: 0.0041425, 1: 0.48993, 8: 0.004095})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4744225})
+     * MEAN: 0.52579
+     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.0040875, 4: 0.0042425, 6: 0.00406, 3: 0.004215, 2: 0.01154, 7: 0.00399, 1: 0.489525, 8: 0.00413})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.47421})
     LATENCY
-     * MEAN: 109.16561549942658
+     * MEAN: 102.538345
 
 EXPERIMENT 3/8:
   CONFIGURATION:
@@ -40,14 +42,15 @@ EXPERIMENT 3/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.3
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.3 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.5718925
-     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.002745, 4: 0.0026825, 6: 0.00256, 3: 0.0026325, 2: 0.01202, 7: 0.002765, 1: 0.5439425, 8: 0.002545})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4281075})
+     * MEAN: 0.5726525
+     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.002635, 5: 0.00262, 3: 0.0028225, 2: 0.0124225, 1: 0.54454, 7: 0.002425, 8: 0.00249, 6: 0.0026975})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4273475})
     LATENCY
-     * MEAN: 101.46508292448452
+     * MEAN: 94.439635
 
 EXPERIMENT 4/8:
   CONFIGURATION:
@@ -57,14 +60,15 @@ EXPERIMENT 4/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.4
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.4 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.6067075
-     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.00192, 5: 0.0019925, 2: 0.01275, 3: 0.002595, 8: 0.0017725, 1: 0.581905, 6: 0.001935, 7: 0.0018375})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3932925})
+     * MEAN: 0.6073725
+     * PER_NODE_CACHE_HIT_RATIO: Tree({6: 0.001965, 5: 0.00176, 4: 0.0020275, 3: 0.0024425, 8: 0.0017825, 7: 0.001765, 2: 0.013195, 1: 0.582435})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3926275})
     LATENCY
-     * MEAN: 96.29109689953746
+     * MEAN: 88.798815
 
 EXPERIMENT 5/8:
   CONFIGURATION:
@@ -74,14 +78,15 @@ EXPERIMENT 5/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.5
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.5 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.635125
-     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.0013675, 5: 0.001395, 3: 0.00226, 2: 0.0135625, 7: 0.0013725, 1: 0.61229, 8: 0.001455, 6: 0.0014225})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.364875})
+     * MEAN: 0.633595
+     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.0013925, 4: 0.0013475, 6: 0.00134, 2: 0.01379, 1: 0.610485, 3: 0.0024325, 7: 0.0013075, 8: 0.0015})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.366405})
     LATENCY
-     * MEAN: 92.4784556745889
+     * MEAN: 84.751555
 
 EXPERIMENT 6/8:
   CONFIGURATION:
@@ -91,14 +96,15 @@ EXPERIMENT 6/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.6
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.6 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.6578525
-     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.001115, 4: 0.001065, 6: 0.00112, 3: 0.0025925, 8: 0.0010625, 7: 0.0011425, 2: 0.0141025, 1: 0.6356525})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3421475})
+     * MEAN: 0.6577425
+     * PER_NODE_CACHE_HIT_RATIO: Tree({3: 0.002655, 2: 0.0147225, 1: 0.63485, 5: 0.001055, 6: 0.00104, 7: 0.0011475, 8: 0.00116, 4: 0.0011125})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3422575})
     LATENCY
-     * MEAN: 89.64617272464102
+     * MEAN: 81.141725
 
 EXPERIMENT 7/8:
   CONFIGURATION:
@@ -108,14 +114,15 @@ EXPERIMENT 7/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.7
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.7 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.67804
-     * PER_NODE_CACHE_HIT_RATIO: Tree({5: 0.0008825, 4: 0.000995, 7: 0.000955, 3: 0.0026425, 2: 0.0149375, 8: 0.000995, 1: 0.6557275, 6: 0.000905})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.32196})
+     * MEAN: 0.6777375
+     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.0009525, 3: 0.00263, 2: 0.0142825, 1: 0.65618, 7: 0.000855, 8: 0.000985, 5: 0.0009125, 6: 0.00094})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3222625})
     LATENCY
-     * MEAN: 87.33129844968354
+     * MEAN: 78.21545
 
 EXPERIMENT 8/8:
   CONFIGURATION:
@@ -125,13 +132,14 @@ EXPERIMENT 8/8:
    * content_placement -> name: UNIFORM
    * cache_policy -> name: LRU
    * strategy -> name: LCE_PKT_LEVEL
-   * desc -> Line topology with 10 nodes with network_cache:0.8
+   * netconf -> single_cache_read_penalty: 2
+   * desc -> Line topology with 10 nodes with network_cache:0.8 and single_cache_read_penalty:2
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.694295
-     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.00091, 5: 0.000745, 6: 0.00074, 3: 0.0028925, 7: 0.0007875, 2: 0.01588, 1: 0.671545, 8: 0.000795})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.305705})
+     * MEAN: 0.6963275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({4: 0.0009, 3: 0.0030575, 5: 0.0007775, 6: 0.000705, 2: 0.0156775, 1: 0.6737125, 7: 0.00078, 8: 0.0007175})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3036725})
     LATENCY
-     * MEAN: 85.82354394971728
+     * MEAN: 75.75082
 
 

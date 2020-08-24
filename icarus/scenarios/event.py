@@ -14,11 +14,13 @@ from icarus.scenarios.algorithms import compute_clusters, compute_p_median, depl
 
 __all__ = [
     'PacketType',
+    'Event',
     'EventPacketLevel'
           ]
 
 @unique
 class PacketType(Enum):
+    """Different packet types"""
     REQUEST = 0
     DATA = 1
     READ_COMPLETE = 2

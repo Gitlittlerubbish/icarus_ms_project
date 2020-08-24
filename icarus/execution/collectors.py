@@ -450,7 +450,7 @@ class LatencyCollector(DataCollector):
         
     @inheritdoc(DataCollector)
     def add_node_process_queue_delay(self, node, flow):
-        self.sess_latency_flow[flow] += (self.view.get_node_process_queue_index(node, flow) + 1) * 5.11 # test, manually set, need to be fixed later
+        self.sess_latency_flow[flow] += (self.view.get_node_process_queue_index(node, flow) + 1) * self.view.get_single_cache_read_penalty()
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):

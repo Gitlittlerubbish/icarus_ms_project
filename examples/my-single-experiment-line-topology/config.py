@@ -70,6 +70,9 @@ default['cache_policy']['name'] = 'LRU'
 # Set caching meta-policy
 default['strategy']['name'] = 'LCE_PKT_LEVEL'
 
+# Set network configuration for NetworkModel
+default['netconf']['single_cache_read_penalty'] = 2
+
 # Description of the experiment
 # default['desc'] = "Line topology with 10 nodes"
 
@@ -77,5 +80,5 @@ default['strategy']['name'] = 'LCE_PKT_LEVEL'
 for network_cache in NETWORK_CACHE:
     experiment = copy.deepcopy(default)
     experiment['cache_placement']['network_cache'] = network_cache
-    experiment['desc'] = f"Line topology with 10 nodes with network_cache:{network_cache}"
+    experiment['desc'] = f"Line topology with 10 nodes with network_cache:{network_cache} and single_cache_read_penalty:{experiment['netconf']['single_cache_read_penalty']}"
     EXPERIMENT_QUEUE.append(experiment)

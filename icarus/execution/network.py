@@ -19,6 +19,7 @@ import fnss
 
 from icarus.registry import CACHE_POLICY
 from icarus.util import iround, path_links
+from icarus.scenarios.event import PacketType, Event, EventPacketLevel
 
 from heapq import heappush, heappop
 
@@ -332,7 +333,29 @@ class NetworkView(object):
             return self.model.cache[node].dump()
 
     def get_node_process_queue_index(self, node, flow):
+        """Returns the index of a cache in the read_queue in a specific node
+
+        Parameters
+        ----------
+        node : any hashable type
+            The node identifier
+
+        Returns
+        -------
+        index : integer
+            Index of a cache in a read_queue
+        """
         return self.model.nodes_process_queues[node].index(flow)
+
+    def get_single_cache_read_penalty(self):
+        """Returns the single_cache_read_penalty set from config.py
+
+        Returns
+        -------
+        penalty : integer
+            
+        """
+        return self.model.single_cache_read_penalty
 
 
 class NetworkModel(object):
@@ -342,7 +365,7 @@ class NetworkModel(object):
     calls to the network controller.
     """
 
-    def __init__(self, topology, cache_policy, shortest_path=None):
+    def __init__(self, topology, cache_policy, single_cache_read_penalty=0, shortest_path=None):
         """Constructor
 
         Parameters
@@ -433,6 +456,9 @@ class NetworkModel(object):
 
         # A dict of FIFO  queues of nodes processing (get content operations)
         self.nodes_process_queues = {}
+
+        # Single cache read queue delay penalty
+        self.single_cache_read_penalty = single_cache_read_penalty
 
 class NetworkController(object):
     """Network controller
