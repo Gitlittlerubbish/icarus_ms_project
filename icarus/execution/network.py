@@ -332,7 +332,7 @@ class NetworkView(object):
         if node in self.model.cache:
             return self.model.cache[node].dump()
 
-    def get_node_process_queue_index(self, node, flow):
+    def get_node_read_queue_index(self, node):
         """Returns the index of a cache in the read_queue in a specific node
 
         Parameters
@@ -345,7 +345,22 @@ class NetworkView(object):
         index : integer
             Index of a cache in a read_queue
         """
-        return self.model.nodes_process_queues[node].index(flow)
+        if node in self.model.nodes_read_queues:
+            return len(self.model.nodes_read_queues[node])
+        else:
+            return 0
+
+    def get_node_write_queue_index(self, node):
+        if node in self.model.nodes_write_queues:
+            return len(self.model.nodes_write_queues[node])
+        else:
+            return 0
+
+    def get_single_cache_write_penalty(self):
+        return self.model.single_cache_write_penalty
+
+    def get_write_queue_size_limit(self):
+        return self.model.write_queue_size_limit
 
     def get_single_cache_read_penalty(self):
         """Returns the single_cache_read_penalty set from config.py
@@ -356,6 +371,9 @@ class NetworkView(object):
             
         """
         return self.model.single_cache_read_penalty
+    
+    def get_read_queue_size_limit(self):
+        return self.model.read_queue_size_limit
 
 
 class NetworkModel(object):
@@ -365,7 +383,7 @@ class NetworkModel(object):
     calls to the network controller.
     """
 
-    def __init__(self, topology, cache_policy, single_cache_read_penalty=0, shortest_path=None):
+    def __init__(self, topology, cache_policy, read_queue_size_limit, write_queue_size_limit, single_cache_read_penalty=0, single_cache_write_penalty=0, shortest_path=None):
         """Constructor
 
         Parameters
@@ -455,10 +473,14 @@ class NetworkModel(object):
         self.eventTimes = set()
 
         # A dict of FIFO  queues of nodes processing (get content operations)
-        self.nodes_process_queues = {}
+        self.nodes_read_queues = {}
+        self.nodes_write_queues = {}
 
         # Single cache read queue delay penalty
         self.single_cache_read_penalty = single_cache_read_penalty
+        self.read_queue_size_limit = read_queue_size_limit
+        self.single_cache_write_penalty = single_cache_write_penalty
+        self.write_queue_size_limit = write_queue_size_limit
 
 class NetworkController(object):
     """Network controller
@@ -499,7 +521,7 @@ class NetworkController(object):
         # add node process delay penalty
         if event['pkt_type'] == 'ReadComplete':
             if self.collector is not None and event['log']:
-                self.collector.add_node_process_queue_delay(event['node'], event['flow'])
+                self.collector.add_node_read_queue_delay(event['node'], event['flow'])
 
     def pop_next_event(self):
         """
@@ -788,15 +810,25 @@ class NetworkController(object):
         else:
             return False
 
-    def push_node_process_queue(self, node, flow):
-        if node in self.model.nodes_process_queues:
-            self.model.nodes_process_queues[node].append(flow)
+    def push_node_read_queue(self, node, flow):
+        if node in self.model.nodes_read_queues:
+            self.model.nodes_read_queues[node].append(flow)
         else:
-            self.model.nodes_process_queues[node] = []
-            self.model.nodes_process_queues[node].append(flow)
+            self.model.nodes_read_queues[node] = []
+            self.model.nodes_read_queues[node].append(flow)
         
-    def pop_node_process_queue(self, node, flow):
-        self.model.nodes_process_queues[node].remove(flow)
+    def push_node_write_queue(self, node, flow):
+        if node in self.model.nodes_write_queues:
+            self.model.nodes_write_queues[node].append(flow)
+        else:
+            self.model.nodes_write_queues[node] = []
+            self.model.nodes_write_queues[node].append(flow)
+
+    def pop_node_read_queue(self, node, flow):
+        self.model.nodes_read_queues[node].remove(flow)
+
+    def pop_node_write_queue(self, node, flow):
+        self.model.nodes_write_queues[node].remove(flow)
 
     def remove_content(self, node):
         """Remove the content being handled from the cache

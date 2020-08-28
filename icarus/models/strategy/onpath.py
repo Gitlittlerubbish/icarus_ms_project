@@ -135,11 +135,11 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if self.view.has_cache(node) or node == source:     
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:     # MODIFY
                 if self.controller.get_content_flow(node, content, flow, log):
-                    self.controller.push_node_process_queue(node, flow)
-                    idx = self.view.get_node_process_queue_index(node, flow)
-                    t_event = time + (idx + 1) * 1.11
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
                     self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
                     return
 
@@ -154,8 +154,14 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if node == receiver:
                 self.controller.end_flow_session(flow, log)
             else:
-                if self.view.has_cache(node):
-                    self.controller.put_content_flow(node, content, flow)
+                if self.view.get_node_write_queue_index(node) < self.view.get_write_queue_size_limit():
+                    # if self.view.has_cache(node):
+                    # self.controller.put_content_flow(node, content, flow)
+                    self.controller.push_node_write_queue(node, flow)
+                    idx = self.view.get_node_write_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_write_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
                 path = self.view.shortest_path(node, receiver)
                 self.controller.forward_content_hop_flow(node, path[1], flow, log)
                 delay = self.view.link_delay(node, path[1])
@@ -163,13 +169,17 @@ class LeaveCopyEverywherePacketLevel(Strategy):
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
         
         elif pkt_type == 'ReadComplete':
-            self.controller.pop_node_process_queue(node, flow)
+            self.controller.pop_node_read_queue(node, flow)
             path = self.view.shortest_path(node, receiver)
             link_delay = self.view.link_delay(node, path[1])
             t_event = time + link_delay
             self.controller.forward_request_hop_flow(node, path[1], flow, log)
             self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
             return
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
 
         else:
             raise ValueError('Invalid packet type')

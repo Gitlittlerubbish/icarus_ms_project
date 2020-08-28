@@ -45,7 +45,7 @@ class DataCollector(object):
         """
         self.view = view
 
-    def add_node_process_queue_delay(self, node, flow):
+    def add_node_read_queue_delay(self, node, flow):
         pass
 
     def start_session(self, timestamp, receiver, content):
@@ -263,7 +263,7 @@ class CollectorProxy(DataCollector):
     dispatching events of interests to concrete collectors.
     """
 
-    EVENTS = ('add_node_process_queue_delay', 'start_session', 'start_flow_session', 'end_session', 'end_flow_session', 'cache_hit', 'cache_hit_flow', 'cache_miss', 'cache_miss_flow', 'server_hit', 'server_hit_flow', 'request_hop', 'request_hop_flow', 'content_hop', 'content_hop_flow','results')
+    EVENTS = ('add_node_read_queue_delay', 'start_session', 'start_flow_session', 'end_session', 'end_flow_session', 'cache_hit', 'cache_hit_flow', 'cache_miss', 'cache_miss_flow', 'server_hit', 'server_hit_flow', 'request_hop', 'request_hop_flow', 'content_hop', 'content_hop_flow','results')
 
     def __init__(self, view, collectors):
         """Constructor
@@ -280,9 +280,9 @@ class CollectorProxy(DataCollector):
                            for e in self.EVENTS}
 
     @inheritdoc(DataCollector)
-    def add_node_process_queue_delay(self, node, flow):
-        for c in self.collectors['add_node_process_queue_delay']:
-            c.add_node_process_queue_delay(node, flow)
+    def add_node_read_queue_delay(self, node, flow):
+        for c in self.collectors['add_node_read_queue_delay']:
+            c.add_node_read_queue_delay(node, flow)
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
@@ -449,8 +449,8 @@ class LatencyCollector(DataCollector):
         self.sess_latency_flow = {}
         
     @inheritdoc(DataCollector)
-    def add_node_process_queue_delay(self, node, flow):
-        self.sess_latency_flow[flow] += (self.view.get_node_process_queue_index(node, flow) + 1) * self.view.get_single_cache_read_penalty()
+    def add_node_read_queue_delay(self, node, flow):
+        self.sess_latency_flow[flow] += self.view.get_node_read_queue_index(node) * self.view.get_single_cache_read_penalty()
 
     @inheritdoc(DataCollector)
     def start_session(self, timestamp, receiver, content):
