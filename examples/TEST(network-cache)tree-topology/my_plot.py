@@ -20,25 +20,29 @@ def main():
                     MEAN_LATENCY_LIST.append(float(line.split(": ")[1].strip()))
                     current_line_ptr = True
                     continue
-    
-    print("Cache-hit-ratio:", MEAN_CACHE_HIT_RATIO_LIST)
-    print("Latency:", MEAN_LATENCY_LIST)
+                
+    print(MEAN_CACHE_HIT_RATIO_LIST)
+    print(MEAN_LATENCY_LIST)
 
 
-    # create plot
-    tick = [0, 2, 6, 8, 10, 12, 14, 16]
+    # create plots
+    tick = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
     plt.bar(range(len(MEAN_CACHE_HIT_RATIO_LIST)), MEAN_CACHE_HIT_RATIO_LIST, color = 'b', tick_label = tick)
-    plt.xlabel('SINGLE_WRITE_PENALTY')
+    for x, y in zip(range(len(tick)), MEAN_CACHE_HIT_RATIO_LIST):
+            plt.text(x + 0.05, y, '%.2f' % y, ha='center', va='bottom')
+    plt.xlabel('NETWORK_CACHE')
     plt.ylabel('MEAN_CACHE_HIT_RATIO')
-    plt.title('MEAN_CACHE_HIT_RATIO vs SINGLE_WRITE_PENALTY')
-    plt.savefig("MEAN_CACHE_HIT_RATIO vs SINGLE_WRITE_PENALTY.png")
+    plt.title('MEAN_CACHE_HIT_RATIO vs NETWORK_CACHE')
+    plt.savefig("MEAN_CACHE_HIT_RATIO vs NETWORK_CACHE.png")
     plt.show()
 
     plt.bar(range(len(MEAN_LATENCY_LIST)), MEAN_LATENCY_LIST, color = 'g', tick_label = tick)
-    plt.xlabel('SINGLE_WRITE_PENALTY')
+    for x, y in zip(range(len(tick)), MEAN_LATENCY_LIST):
+            plt.text(x + 0.05, y, '%.2f' % y, ha='center', va='bottom')
+    plt.xlabel('NETWORK_CACHE')
     plt.ylabel('MEAN_LATENCY')
-    plt.title('MEAN_LATENCY vs SINGLE_WRITE_PENALTY')
-    plt.savefig('MEAN_LATENCY vs SINGLE_WRITE_PENALTY.png')
+    plt.title('MEAN_LATENCY vs NETWORK_CACHE')
+    plt.savefig('MEAN_LATENCY vs NETWORK_CACHE.png')
     plt.show()
 
 

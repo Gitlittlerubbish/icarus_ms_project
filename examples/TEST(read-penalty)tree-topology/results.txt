@@ -1,0 +1,1849 @@
+EXPERIMENT 1/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.534985
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0137075, 1: 0.0137175, 3: 0.0074175, 6: 0.0074975, 4: 0.0073675, 5: 0.007325, 13: 0.00432, 11: 0.004325, 9: 0.0041975, 14: 0.00419, 10: 0.004105, 8: 0.0042225, 7: 0.004195, 12: 0.004415, 16: 0.0281375, 20: 0.027875, 19: 0.027055, 18: 0.02727, 17: 0.02785, 21: 0.0276925, 15: 0.02771, 27: 0.027795, 29: 0.027905, 28: 0.0275325, 26: 0.0278625, 30: 0.0274925, 23: 0.028145, 24: 0.027835, 22: 0.027915, 25: 0.02791})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.465015})
+    LATENCY
+     * MEAN: 6.07104
+
+EXPERIMENT 2/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.53487
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.01382, 1: 0.01375, 5: 0.007515, 6: 0.00718, 3: 0.0070425, 11: 0.0042275, 4: 0.0072775, 13: 0.0043825, 12: 0.0041875, 7: 0.004125, 10: 0.004165, 9: 0.0043075, 24: 0.02763, 8: 0.00426, 23: 0.0278775, 15: 0.028065, 27: 0.0281125, 14: 0.0042425, 16: 0.0278, 26: 0.0277075, 20: 0.0278675, 25: 0.0275825, 28: 0.0276, 19: 0.0274225, 22: 0.0280525, 30: 0.027705, 29: 0.027535, 17: 0.02836, 18: 0.027785, 21: 0.027285})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.46513})
+    LATENCY
+     * MEAN: 6.084609499985727
+
+EXPERIMENT 3/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.53474
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.01347, 2: 0.013615, 5: 0.007255, 6: 0.00728, 4: 0.0070775, 3: 0.007375, 9: 0.004275, 14: 0.0042475, 11: 0.0043275, 28: 0.0278225, 26: 0.02794, 20: 0.027475, 13: 0.0042525, 27: 0.0276375, 12: 0.00421, 23: 0.027745, 8: 0.0042525, 7: 0.0041125, 21: 0.02791, 22: 0.0279525, 18: 0.0281425, 10: 0.0041975, 30: 0.0276625, 25: 0.0277625, 29: 0.027725, 19: 0.0276775, 15: 0.028115, 17: 0.027915, 24: 0.0277525, 16: 0.0275575})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.46526})
+    LATENCY
+     * MEAN: 6.243215550011331
+
+EXPERIMENT 4/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4981675
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0092, 1: 0.009715, 3: 0.0052725, 6: 0.00517, 5: 0.005245, 4: 0.0050625, 14: 0.0029425, 11: 0.0030675, 8: 0.0030075, 13: 0.0030825, 7: 0.00316, 12: 0.0030125, 10: 0.0030225, 30: 0.027325, 29: 0.0271575, 28: 0.0268675, 25: 0.027105, 16: 0.0270825, 26: 0.027115, 9: 0.00308, 23: 0.02683, 19: 0.02666, 27: 0.027055, 18: 0.02713, 15: 0.027115, 17: 0.0270025, 21: 0.026995, 24: 0.02771, 20: 0.0276475, 22: 0.02733})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5018325})
+    LATENCY
+     * MEAN: 511.05427705030286
+
+EXPERIMENT 5/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.499335
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0084575, 2: 0.0087075, 5: 0.004795, 3: 0.004815, 6: 0.0046325, 4: 0.0045775, 8: 0.00273, 12: 0.002865, 13: 0.002625, 11: 0.00268, 14: 0.0028225, 9: 0.002755, 7: 0.00284, 27: 0.02792, 10: 0.002895, 16: 0.0281925, 25: 0.0274425, 17: 0.0270775, 23: 0.027785, 21: 0.0270925, 26: 0.0272275, 24: 0.026705, 28: 0.02785, 22: 0.0274625, 15: 0.0266775, 19: 0.0283825, 18: 0.0276375, 30: 0.0277975, 20: 0.02776, 29: 0.0281275})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.500665})
+    LATENCY
+     * MEAN: 998.2979093002428
+
+EXPERIMENT 6/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5019375
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0078275, 1: 0.00779, 6: 0.0043525, 3: 0.0044525, 4: 0.0044225, 5: 0.004515, 11: 0.0028125, 7: 0.0028025, 13: 0.002535, 14: 0.0027425, 10: 0.00271, 9: 0.0025725, 23: 0.028425, 12: 0.0027675, 8: 0.002635, 28: 0.027625, 20: 0.0279725, 25: 0.0274075, 29: 0.0280525, 15: 0.027805, 27: 0.026915, 19: 0.02779, 22: 0.0282925, 30: 0.02794, 24: 0.0282925, 21: 0.0282825, 18: 0.027625, 26: 0.02846, 16: 0.0277725, 17: 0.0283425})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4980625})
+    LATENCY
+     * MEAN: 1483.8523367495293
+
+EXPERIMENT 7/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.506465
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0073725, 2: 0.007385, 4: 0.0041625, 5: 0.00403, 6: 0.00412, 3: 0.004175, 13: 0.0025125, 11: 0.002565, 9: 0.00253, 27: 0.028385, 12: 0.0025525, 8: 0.00245, 10: 0.00237, 7: 0.00247, 25: 0.02875, 23: 0.02886, 28: 0.028315, 18: 0.02857, 29: 0.0274675, 26: 0.02857, 24: 0.0287575, 14: 0.00269, 20: 0.02873, 15: 0.02835, 19: 0.028525, 30: 0.0279425, 22: 0.028535, 17: 0.027905, 21: 0.028685, 16: 0.0287325})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.493535})
+    LATENCY
+     * MEAN: 1932.49617075031
+
+EXPERIMENT 8/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5178
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0070625, 2: 0.00673, 3: 0.0039375, 5: 0.00392, 6: 0.00403, 12: 0.0025, 4: 0.004095, 14: 0.0025075, 11: 0.002535, 10: 0.0025925, 13: 0.002485, 7: 0.0025475, 8: 0.0025675, 9: 0.0024675, 23: 0.0293425, 24: 0.0297575, 26: 0.0289925, 30: 0.028775, 22: 0.0291725, 17: 0.0291725, 29: 0.02946, 19: 0.02923, 28: 0.0288225, 25: 0.02912, 21: 0.029795, 16: 0.0297125, 15: 0.02852, 18: 0.0292175, 27: 0.0289475, 20: 0.029785})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4822})
+    LATENCY
+     * MEAN: 2301.9071102498297
+
+EXPERIMENT 9/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5227525
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00658, 6: 0.00381, 1: 0.0065175, 4: 0.003885, 11: 0.00244, 5: 0.0038275, 10: 0.0024025, 14: 0.0024, 12: 0.0025175, 3: 0.003825, 9: 0.0025275, 13: 0.0025525, 25: 0.029875, 8: 0.0023925, 21: 0.0301575, 26: 0.029495, 24: 0.0296675, 28: 0.029915, 7: 0.002385, 20: 0.02984, 22: 0.0296775, 27: 0.02888, 23: 0.0299, 29: 0.02916, 19: 0.0295075, 15: 0.0299825, 16: 0.0296675, 30: 0.0298775, 17: 0.0295075, 18: 0.02958})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4772475})
+    LATENCY
+     * MEAN: 2717.660270199483
+
+EXPERIMENT 10/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5183775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0062975, 5: 0.003585, 7: 0.0025025, 1: 0.0061725, 4: 0.003735, 3: 0.0037475, 6: 0.0037125, 14: 0.0023025, 11: 0.00232, 13: 0.002475, 9: 0.0023425, 10: 0.00253, 12: 0.002405, 25: 0.0292575, 26: 0.0286975, 30: 0.0292325, 23: 0.0294925, 16: 0.0298625, 28: 0.0286025, 20: 0.0291625, 19: 0.029655, 8: 0.0024975, 24: 0.028465, 21: 0.0299875, 18: 0.029955, 29: 0.0295275, 15: 0.03031, 27: 0.0297225, 22: 0.0299175, 17: 0.029905})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4816225})
+    LATENCY
+     * MEAN: 3235.982358725412
+
+EXPERIMENT 11/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 3, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:3
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51351
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0061, 3: 0.00364, 4: 0.00354, 2: 0.0058925, 7: 0.00242, 10: 0.00232, 6: 0.0035025, 9: 0.0022925, 5: 0.0034725, 13: 0.002415, 20: 0.029055, 8: 0.0023575, 16: 0.0289825, 15: 0.029405, 17: 0.029385, 21: 0.0294075, 14: 0.0024875, 11: 0.0023625, 12: 0.002355, 18: 0.02901, 28: 0.029255, 27: 0.0288, 29: 0.029035, 30: 0.0293425, 22: 0.0297225, 26: 0.0292525, 25: 0.029235, 23: 0.028885, 19: 0.0295275, 24: 0.0300525})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48649})
+    LATENCY
+     * MEAN: 3779.571431000284
+
+EXPERIMENT 12/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5343575
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0135025, 2: 0.0136825, 6: 0.0072675, 4: 0.0073475, 3: 0.0072225, 5: 0.0072825, 8: 0.004145, 7: 0.004275, 10: 0.00436, 11: 0.00442, 14: 0.00426, 13: 0.00402, 9: 0.00429, 12: 0.004225, 22: 0.0281975, 16: 0.0280375, 21: 0.0282125, 28: 0.0272325, 23: 0.0275275, 26: 0.02784, 15: 0.028375, 17: 0.027695, 27: 0.0275925, 30: 0.0273, 18: 0.02735, 20: 0.0279675, 29: 0.02773, 24: 0.02791, 25: 0.0277925, 19: 0.0272975})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4656425})
+    LATENCY
+     * MEAN: 6.07272
+
+EXPERIMENT 13/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.536275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0135825, 2: 0.013505, 6: 0.0072575, 3: 0.00726, 5: 0.0070275, 4: 0.0072, 14: 0.00407, 13: 0.00435, 12: 0.00425, 11: 0.00437, 10: 0.0043175, 8: 0.00417, 29: 0.02777, 24: 0.02757, 27: 0.0282325, 7: 0.0042375, 9: 0.0042425, 21: 0.0277925, 25: 0.0276775, 28: 0.027465, 30: 0.0284125, 17: 0.0277725, 20: 0.0277225, 23: 0.028035, 26: 0.027875, 15: 0.0279125, 18: 0.0282225, 16: 0.0274975, 19: 0.0281525, 22: 0.028325})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.463725})
+    LATENCY
+     * MEAN: 6.069534299986176
+
+EXPERIMENT 14/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.53493
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0134175, 2: 0.0134625, 3: 0.0072725, 6: 0.00734, 4: 0.0073475, 5: 0.0071825, 8: 0.004095, 7: 0.00416, 11: 0.004285, 10: 0.0043125, 13: 0.0042175, 14: 0.004275, 12: 0.0042975, 27: 0.027605, 22: 0.0278275, 24: 0.0277125, 20: 0.02852, 16: 0.02756, 9: 0.0040925, 18: 0.0277225, 15: 0.0279325, 28: 0.027825, 17: 0.0280775, 23: 0.0282, 21: 0.02788, 26: 0.02732, 19: 0.0278975, 30: 0.0275575, 25: 0.0277975, 29: 0.0277375})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.46507})
+    LATENCY
+     * MEAN: 6.243216150012633
+
+EXPERIMENT 15/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4991225
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.009795, 2: 0.009295, 6: 0.0051225, 5: 0.0052575, 4: 0.0051825, 3: 0.0051725, 8: 0.003075, 11: 0.0031125, 12: 0.0031375, 9: 0.0031125, 10: 0.003105, 14: 0.0029975, 13: 0.0031375, 29: 0.0273725, 24: 0.027275, 20: 0.0267525, 28: 0.02683, 16: 0.0272775, 22: 0.027355, 7: 0.00305, 27: 0.0268375, 18: 0.0273925, 21: 0.0276525, 19: 0.02708, 30: 0.0275775, 26: 0.0270025, 17: 0.027155, 15: 0.027035, 23: 0.026895, 25: 0.02708})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5008775})
+    LATENCY
+     * MEAN: 502.85669217529767
+
+EXPERIMENT 16/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5021825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.008785, 1: 0.0084925, 3: 0.0046875, 6: 0.00472, 4: 0.0048975, 5: 0.004795, 10: 0.00277, 14: 0.00286, 13: 0.0028825, 11: 0.00274, 7: 0.002825, 8: 0.0027275, 12: 0.0027975, 22: 0.0278625, 25: 0.02776, 9: 0.002855, 21: 0.027725, 27: 0.02799, 15: 0.0277925, 30: 0.0276575, 17: 0.02767, 20: 0.028395, 24: 0.0279475, 18: 0.027935, 28: 0.0275975, 29: 0.0277625, 16: 0.02718, 26: 0.027685, 19: 0.0268625, 23: 0.027525})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4978175})
+    LATENCY
+     * MEAN: 988.6061989002714
+
+EXPERIMENT 17/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.504825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0078225, 6: 0.004425, 2: 0.00778, 4: 0.0042525, 13: 0.00264, 5: 0.0044, 10: 0.0026875, 3: 0.00428, 14: 0.00274, 11: 0.002725, 9: 0.002605, 21: 0.0287325, 22: 0.0284125, 18: 0.028395, 12: 0.00267, 8: 0.00273, 29: 0.0282825, 7: 0.0026825, 20: 0.02765, 27: 0.0272675, 30: 0.0285275, 26: 0.02841, 19: 0.027685, 28: 0.0285225, 24: 0.0276775, 23: 0.02814, 16: 0.02799, 25: 0.02761, 15: 0.028375, 17: 0.0287075})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.495175})
+    LATENCY
+     * MEAN: 1464.1948501245313
+
+EXPERIMENT 18/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.50947
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0071875, 1: 0.007115, 6: 0.0041425, 11: 0.002565, 12: 0.0026125, 5: 0.004295, 4: 0.00413, 14: 0.00241, 3: 0.0040675, 13: 0.0025175, 9: 0.0024975, 8: 0.0025625, 21: 0.0284625, 26: 0.02835, 23: 0.02841, 30: 0.028875, 10: 0.0025575, 27: 0.0289325, 29: 0.0289325, 25: 0.0285225, 18: 0.0287825, 22: 0.028895, 28: 0.0280075, 17: 0.029375, 7: 0.0025025, 19: 0.0280975, 24: 0.02788, 20: 0.028835, 15: 0.02898, 16: 0.02897})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.49053})
+    LATENCY
+     * MEAN: 1908.206984250292
+
+EXPERIMENT 19/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51776
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.007055, 2: 0.0070975, 5: 0.0039375, 6: 0.0039275, 3: 0.0039575, 4: 0.00379, 7: 0.0023875, 14: 0.00252, 10: 0.0024, 13: 0.0023775, 11: 0.0025175, 8: 0.0023975, 29: 0.0293975, 25: 0.029185, 22: 0.0290825, 18: 0.029345, 24: 0.0295925, 28: 0.0295775, 9: 0.0024475, 15: 0.0293375, 23: 0.029375, 12: 0.0024425, 19: 0.029035, 21: 0.0294275, 16: 0.0287475, 26: 0.0290625, 17: 0.0288425, 30: 0.0299175, 27: 0.0290875, 20: 0.0294925})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48224})
+    LATENCY
+     * MEAN: 2300.974354374826
+
+EXPERIMENT 20/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5243925
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00642, 1: 0.0066825, 4: 0.00398, 5: 0.0037175, 3: 0.0037175, 10: 0.00233, 11: 0.002525, 9: 0.002335, 21: 0.02979, 7: 0.00237, 8: 0.0023575, 6: 0.0039875, 19: 0.0301575, 20: 0.0294425, 26: 0.0293825, 22: 0.0302175, 16: 0.0290925, 14: 0.002395, 18: 0.0300375, 12: 0.002525, 15: 0.0298925, 13: 0.0023425, 27: 0.03021, 24: 0.02999, 25: 0.0296825, 23: 0.0299675, 28: 0.0302575, 30: 0.0296925, 29: 0.029495, 17: 0.0294})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4756075})
+    LATENCY
+     * MEAN: 2689.7342899995
+
+EXPERIMENT 21/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51556
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00635, 1: 0.0062, 5: 0.003675, 4: 0.00358, 3: 0.00364, 6: 0.00357, 11: 0.0023775, 8: 0.002255, 10: 0.002265, 7: 0.00222, 14: 0.0023075, 13: 0.0022825, 9: 0.002235, 12: 0.002225, 21: 0.0292525, 24: 0.0295075, 23: 0.02961, 29: 0.02952, 16: 0.0296325, 22: 0.0294075, 26: 0.02874, 28: 0.02962, 17: 0.0297275, 30: 0.030175, 18: 0.029525, 19: 0.0286, 27: 0.02827, 15: 0.0290975, 25: 0.0300425, 20: 0.02965})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48444})
+    LATENCY
+     * MEAN: 3271.677563775405
+
+EXPERIMENT 22/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 5, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5108025
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0057775, 1: 0.005815, 3: 0.003485, 4: 0.00352, 12: 0.00215, 6: 0.00338, 5: 0.00329, 14: 0.00221, 7: 0.0022475, 25: 0.0294525, 13: 0.00218, 9: 0.00212, 30: 0.02874, 11: 0.002155, 8: 0.00219, 24: 0.02937, 23: 0.0289775, 10: 0.002185, 29: 0.0292475, 28: 0.0291425, 22: 0.0295575, 20: 0.0289025, 27: 0.02911, 18: 0.0296675, 15: 0.029725, 16: 0.029355, 26: 0.0289825, 17: 0.0290525, 19: 0.02958, 21: 0.029235})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4891975})
+    LATENCY
+     * MEAN: 3820.8209682502847
+
+EXPERIMENT 23/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5341525
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0133875, 2: 0.0133025, 4: 0.0072925, 5: 0.007105, 3: 0.00711, 6: 0.00726, 8: 0.00421, 13: 0.004185, 14: 0.00413, 7: 0.00413, 12: 0.0043425, 9: 0.004355, 11: 0.0043525, 16: 0.027655, 29: 0.027905, 21: 0.027635, 10: 0.004215, 23: 0.0281475, 19: 0.0277725, 18: 0.0280475, 27: 0.027695, 30: 0.0276725, 22: 0.02791, 20: 0.027725, 28: 0.027515, 26: 0.0276, 15: 0.0280725, 24: 0.02712, 25: 0.028575, 17: 0.0277275})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4658475})
+    LATENCY
+     * MEAN: 6.06983
+
+EXPERIMENT 24/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.53593
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.01388, 1: 0.013835, 5: 0.00737, 3: 0.007295, 6: 0.0073675, 4: 0.0072225, 13: 0.0043325, 7: 0.004265, 11: 0.0043525, 10: 0.004265, 14: 0.004215, 9: 0.0042625, 12: 0.00428, 29: 0.02798, 21: 0.0275675, 18: 0.02755, 20: 0.02772, 8: 0.0042925, 23: 0.02745, 15: 0.0277625, 27: 0.027875, 19: 0.0277575, 24: 0.0274175, 22: 0.027755, 17: 0.0278825, 25: 0.02801, 26: 0.028, 16: 0.028165, 28: 0.0282, 30: 0.0276025})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.46407})
+    LATENCY
+     * MEAN: 6.078594299986093
+
+EXPERIMENT 25/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.534785
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.013765, 1: 0.0135125, 4: 0.0070875, 5: 0.00705, 6: 0.00716, 12: 0.004025, 3: 0.0071575, 11: 0.0042425, 10: 0.00439, 9: 0.004105, 7: 0.00412, 14: 0.004305, 8: 0.004055, 30: 0.0281625, 25: 0.02803, 22: 0.02784, 13: 0.00439, 19: 0.027295, 21: 0.02805, 28: 0.02784, 15: 0.0278275, 20: 0.027475, 23: 0.0282325, 24: 0.027255, 18: 0.0278375, 16: 0.027685, 27: 0.0278725, 17: 0.0284375, 29: 0.0274775, 26: 0.0281025})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.465215})
+    LATENCY
+     * MEAN: 6.256954950012766
+
+EXPERIMENT 26/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.498965
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.009895, 2: 0.00962, 4: 0.005095, 5: 0.0050825, 3: 0.0053625, 6: 0.0051125, 11: 0.00317, 7: 0.0030425, 13: 0.00313, 12: 0.00302, 10: 0.0030175, 27: 0.0271675, 9: 0.00304, 14: 0.0029975, 30: 0.02733, 28: 0.026965, 16: 0.02746, 20: 0.02747, 8: 0.0030075, 25: 0.027165, 24: 0.02695, 19: 0.02715, 15: 0.0280725, 23: 0.027135, 26: 0.02648, 22: 0.0273225, 29: 0.02671, 18: 0.027335, 17: 0.0270625, 21: 0.0265975})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.501035})
+    LATENCY
+     * MEAN: 506.05706797530377
+
+EXPERIMENT 27/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5020825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00847, 1: 0.008615, 5: 0.0047, 3: 0.00463, 4: 0.0046425, 6: 0.00476, 11: 0.00286, 7: 0.002905, 13: 0.00286, 26: 0.027195, 12: 0.0028425, 14: 0.00278, 9: 0.0027725, 8: 0.0028725, 18: 0.02828, 20: 0.0274575, 30: 0.0271125, 10: 0.0028625, 24: 0.027525, 28: 0.0285575, 19: 0.0275425, 17: 0.0272775, 22: 0.027965, 21: 0.028355, 29: 0.0266, 15: 0.027855, 23: 0.027895, 16: 0.0279725, 25: 0.028235, 27: 0.027685})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4979175})
+    LATENCY
+     * MEAN: 983.6115802002618
+
+EXPERIMENT 28/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.50667
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0078825, 3: 0.0043525, 1: 0.008065, 5: 0.004475, 6: 0.00435, 11: 0.00275, 13: 0.00277, 14: 0.002715, 23: 0.0281775, 4: 0.0043875, 16: 0.028185, 27: 0.028275, 30: 0.028595, 8: 0.0027575, 7: 0.002645, 15: 0.027925, 28: 0.0278625, 24: 0.02772, 10: 0.0026525, 9: 0.00276, 12: 0.0025975, 25: 0.02818, 22: 0.02824, 18: 0.028015, 20: 0.0281625, 26: 0.0280975, 29: 0.0286775, 17: 0.0284975, 21: 0.0283375, 19: 0.0285625})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.49333})
+    LATENCY
+     * MEAN: 1449.365335874531
+
+EXPERIMENT 29/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5064
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0071125, 2: 0.0073125, 3: 0.0040725, 5: 0.0040325, 10: 0.002535, 8: 0.00251, 6: 0.004165, 4: 0.00409, 13: 0.002525, 7: 0.002535, 12: 0.0025275, 17: 0.0284225, 22: 0.0280925, 14: 0.00258, 21: 0.0279075, 19: 0.028045, 16: 0.0278825, 9: 0.0025225, 11: 0.002595, 23: 0.0283, 26: 0.0287275, 15: 0.02796, 20: 0.028325, 18: 0.0287925, 30: 0.028735, 25: 0.0296675, 27: 0.029, 24: 0.028575, 29: 0.028485, 28: 0.0283675})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4936})
+    LATENCY
+     * MEAN: 1930.0535157003133
+
+EXPERIMENT 30/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51728
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.007, 1: 0.00689, 3: 0.003985, 6: 0.0040125, 7: 0.0025775, 4: 0.00394, 5: 0.0040275, 9: 0.0024225, 12: 0.00241, 8: 0.0024325, 14: 0.00259, 10: 0.00249, 15: 0.0291975, 16: 0.0300725, 11: 0.002425, 23: 0.0298725, 21: 0.0293275, 30: 0.0293425, 26: 0.028825, 19: 0.02941, 13: 0.0024625, 20: 0.029685, 25: 0.0282725, 17: 0.0288675, 27: 0.028945, 28: 0.02877, 18: 0.02928, 29: 0.02945, 22: 0.0295125, 24: 0.028785})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48272})
+    LATENCY
+     * MEAN: 2309.3708120498304
+
+EXPERIMENT 31/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5197675
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00668, 1: 0.006615, 5: 0.0037325, 4: 0.0039025, 11: 0.0023975, 6: 0.0038125, 12: 0.0024175, 10: 0.0024575, 28: 0.029525, 7: 0.0024475, 13: 0.0024225, 3: 0.00372, 14: 0.00233, 26: 0.0293775, 22: 0.0287475, 27: 0.0291975, 30: 0.029995, 24: 0.0289975, 29: 0.02968, 9: 0.0024325, 16: 0.0300375, 23: 0.0294825, 8: 0.0023775, 20: 0.0294025, 21: 0.0301375, 25: 0.0295175, 19: 0.029265, 17: 0.029295, 18: 0.0297075, 15: 0.0296575})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4802325})
+    LATENCY
+     * MEAN: 2754.2000779995105
+
+EXPERIMENT 32/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5167275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.006265, 1: 0.006295, 6: 0.0035675, 3: 0.00368, 13: 0.00221, 4: 0.0035475, 10: 0.00234, 7: 0.0021725, 23: 0.02943, 14: 0.00236, 8: 0.0023625, 28: 0.028485, 5: 0.00363, 11: 0.002265, 12: 0.0023675, 24: 0.02953, 25: 0.02936, 29: 0.0295725, 15: 0.02968, 9: 0.0022575, 17: 0.0292175, 22: 0.0294475, 30: 0.0291025, 26: 0.029695, 21: 0.0298325, 27: 0.02931, 19: 0.0301625, 20: 0.0297225, 18: 0.0296375, 16: 0.0292225})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4832725})
+    LATENCY
+     * MEAN: 3255.631706850402
+
+EXPERIMENT 33/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 8, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:8
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51228
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0060575, 2: 0.0058375, 6: 0.0034525, 3: 0.0033725, 7: 0.00211, 4: 0.003475, 9: 0.0022425, 10: 0.002225, 5: 0.0035175, 12: 0.0021175, 14: 0.0022125, 22: 0.0295475, 11: 0.0021675, 18: 0.0293725, 13: 0.0021825, 23: 0.0297675, 8: 0.00221, 20: 0.0288025, 17: 0.028045, 29: 0.0290275, 30: 0.02994, 26: 0.03024, 21: 0.029305, 24: 0.02956, 27: 0.029415, 19: 0.0294925, 15: 0.0289625, 16: 0.029345, 28: 0.02917, 25: 0.0291075})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48772})
+    LATENCY
+     * MEAN: 3798.9753547502833
+
+EXPERIMENT 34/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5360275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0133125, 1: 0.0137225, 5: 0.0072675, 3: 0.0074025, 6: 0.0073675, 4: 0.0071125, 7: 0.00438, 12: 0.004285, 11: 0.0042575, 10: 0.0042825, 14: 0.0042575, 9: 0.0042675, 8: 0.00416, 13: 0.004265, 26: 0.0279175, 30: 0.0278625, 28: 0.0273825, 20: 0.02748, 16: 0.028485, 22: 0.028365, 24: 0.02794, 15: 0.027365, 25: 0.027865, 23: 0.028005, 21: 0.0280625, 18: 0.027465, 19: 0.028075, 17: 0.0279525, 29: 0.0279225, 27: 0.0275425})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4639725})
+    LATENCY
+     * MEAN: 6.0589
+
+EXPERIMENT 35/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5331525
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.013415, 2: 0.0136475, 3: 0.0072225, 4: 0.0071175, 5: 0.0072525, 6: 0.0073125, 14: 0.00433, 9: 0.00427, 7: 0.0043625, 11: 0.0041325, 10: 0.0041125, 13: 0.004305, 12: 0.00433, 8: 0.0042275, 30: 0.028025, 20: 0.0277425, 21: 0.0277775, 17: 0.02773, 19: 0.0277525, 26: 0.027875, 23: 0.027805, 25: 0.0272325, 18: 0.0271475, 15: 0.0274825, 16: 0.0280325, 28: 0.0277975, 22: 0.0277725, 29: 0.0271775, 27: 0.0279725, 24: 0.0277925})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4668475})
+    LATENCY
+     * MEAN: 6.0951755999855095
+
+EXPERIMENT 36/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5338275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0135725, 2: 0.01313, 5: 0.0071575, 4: 0.0073125, 6: 0.0071, 3: 0.00737, 14: 0.0042925, 12: 0.004, 11: 0.0041125, 13: 0.00425, 7: 0.0041525, 8: 0.0043175, 9: 0.0042075, 23: 0.028145, 10: 0.0043675, 27: 0.0277625, 25: 0.02787, 29: 0.0279275, 30: 0.0274125, 19: 0.02806, 24: 0.027795, 18: 0.0281325, 15: 0.02763, 21: 0.0278175, 17: 0.02738, 20: 0.0277275, 22: 0.0282225, 26: 0.027365, 28: 0.02769, 16: 0.0275475})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4661725})
+    LATENCY
+     * MEAN: 6.2534450000112365
+
+EXPERIMENT 37/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4992475
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00953, 1: 0.00949, 5: 0.005165, 6: 0.0049675, 13: 0.0030975, 4: 0.0051225, 3: 0.00492, 7: 0.00325, 9: 0.0030325, 11: 0.0030475, 10: 0.0030775, 12: 0.00307, 25: 0.02675, 14: 0.002995, 22: 0.027945, 15: 0.0277025, 24: 0.0274, 8: 0.0031625, 26: 0.027715, 23: 0.02712, 21: 0.027105, 18: 0.02669, 20: 0.02741, 27: 0.0266625, 16: 0.027315, 28: 0.027335, 29: 0.02717, 19: 0.02619, 30: 0.02706, 17: 0.02775})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5007525})
+    LATENCY
+     * MEAN: 508.7463617253001
+
+EXPERIMENT 38/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.506325
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0084275, 2: 0.0086875, 4: 0.0045075, 8: 0.0027375, 6: 0.004765, 3: 0.0047475, 5: 0.0048975, 7: 0.0028825, 10: 0.0027175, 11: 0.002805, 21: 0.0284025, 13: 0.0028125, 16: 0.0278025, 19: 0.027775, 12: 0.0028075, 18: 0.0277175, 17: 0.02878, 22: 0.028105, 20: 0.0281825, 9: 0.0029025, 24: 0.0279575, 27: 0.02807, 25: 0.02818, 14: 0.002855, 15: 0.0270925, 23: 0.0280425, 28: 0.02804, 29: 0.02759, 26: 0.0282825, 30: 0.0277525})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.493675})
+    LATENCY
+     * MEAN: 966.0690278002635
+
+EXPERIMENT 39/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.500685
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0077, 2: 0.0079525, 5: 0.0043625, 4: 0.0044375, 3: 0.004145, 12: 0.002715, 6: 0.0042, 11: 0.0026125, 8: 0.002595, 13: 0.002615, 14: 0.00268, 7: 0.0026, 10: 0.002745, 17: 0.0285675, 18: 0.02826, 9: 0.00263, 26: 0.02777, 25: 0.0276475, 15: 0.02732, 21: 0.02805, 23: 0.0276475, 28: 0.0281775, 24: 0.02811, 29: 0.0280625, 20: 0.0277225, 22: 0.028095, 19: 0.0277375, 16: 0.0281475, 30: 0.0269775, 27: 0.0284025})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.499315})
+    LATENCY
+     * MEAN: 1493.3550936245388
+
+EXPERIMENT 40/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.50858
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0073825, 2: 0.007255, 3: 0.0042175, 4: 0.00393, 7: 0.00234, 6: 0.0041825, 13: 0.002505, 14: 0.00247, 10: 0.002435, 8: 0.00261, 5: 0.0040775, 16: 0.027965, 28: 0.0292775, 17: 0.0281375, 11: 0.002505, 9: 0.00245, 12: 0.002545, 21: 0.0290975, 27: 0.028825, 15: 0.0285225, 18: 0.0283425, 19: 0.0281375, 30: 0.0288, 26: 0.028955, 22: 0.0284725, 20: 0.0290575, 25: 0.028495, 23: 0.0281925, 29: 0.02881, 24: 0.0285875})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.49142})
+    LATENCY
+     * MEAN: 1915.5820398503047
+
+EXPERIMENT 41/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.517085
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0070725, 1: 0.006825, 11: 0.0024625, 6: 0.0039175, 5: 0.0038425, 4: 0.0039025, 3: 0.003915, 13: 0.0024425, 9: 0.0024125, 14: 0.00245, 8: 0.00244, 12: 0.0024525, 28: 0.0288125, 20: 0.02972, 24: 0.02953, 10: 0.002425, 16: 0.02977, 29: 0.0292475, 19: 0.0295625, 30: 0.0290775, 7: 0.00243, 17: 0.02945, 27: 0.029245, 26: 0.0285025, 18: 0.0287525, 15: 0.02949, 21: 0.0292475, 23: 0.0291375, 25: 0.02982, 22: 0.02873})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.482915})
+    LATENCY
+     * MEAN: 2312.757418499826
+
+EXPERIMENT 42/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5225975
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0066, 2: 0.006585, 4: 0.003855, 3: 0.0038625, 9: 0.002325, 13: 0.002335, 8: 0.002495, 5: 0.0038725, 7: 0.0023425, 19: 0.028965, 20: 0.02987, 6: 0.00366, 18: 0.029685, 12: 0.002325, 10: 0.0024, 11: 0.0025275, 15: 0.0302, 25: 0.0300525, 16: 0.0305375, 26: 0.0295825, 21: 0.0303775, 22: 0.0295325, 24: 0.02967, 17: 0.02973, 14: 0.002505, 28: 0.0293275, 27: 0.029495, 23: 0.0286475, 29: 0.02956, 30: 0.029675})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4774025})
+    LATENCY
+     * MEAN: 2714.086015999495
+
+EXPERIMENT 43/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5181025
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0062925, 2: 0.006225, 3: 0.0035125, 4: 0.0036525, 6: 0.0035725, 10: 0.00235, 8: 0.0024, 14: 0.002265, 13: 0.0023275, 15: 0.0297075, 7: 0.0022925, 21: 0.0287875, 30: 0.0295375, 9: 0.00229, 17: 0.03047, 5: 0.0037, 16: 0.030155, 22: 0.02994, 29: 0.02905, 12: 0.00239, 11: 0.002145, 19: 0.029185, 20: 0.0290625, 26: 0.0296675, 23: 0.0291625, 28: 0.029925, 24: 0.029455, 27: 0.0293475, 25: 0.02886, 18: 0.030375})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4818975})
+    LATENCY
+     * MEAN: 3238.8563931254216
+
+EXPERIMENT 44/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:10
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.50931
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.005665, 3: 0.003565, 4: 0.003455, 2: 0.00613, 10: 0.00218, 8: 0.002205, 9: 0.0020975, 7: 0.0021875, 21: 0.029105, 5: 0.0036075, 6: 0.003505, 17: 0.0293725, 15: 0.028775, 18: 0.029075, 20: 0.0293275, 13: 0.0022875, 14: 0.0021975, 16: 0.0294475, 24: 0.0287275, 27: 0.0287775, 23: 0.0292425, 28: 0.029475, 30: 0.0292475, 25: 0.02921, 19: 0.02955, 12: 0.002125, 11: 0.00217, 22: 0.0294025, 29: 0.028515, 26: 0.0286825})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.49069})
+    LATENCY
+     * MEAN: 3848.5954327502704
+
+EXPERIMENT 45/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5362075
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0134725, 1: 0.01355, 6: 0.007395, 4: 0.0073725, 5: 0.00726, 3: 0.0074225, 11: 0.0042325, 7: 0.004125, 14: 0.0041425, 10: 0.0043525, 13: 0.0044025, 12: 0.00432, 9: 0.004275, 28: 0.0275775, 23: 0.02811, 25: 0.027745, 8: 0.004225, 22: 0.028405, 20: 0.02795, 24: 0.0281775, 26: 0.027855, 21: 0.02752, 16: 0.0276425, 27: 0.0275275, 17: 0.0275725, 18: 0.0281, 30: 0.0281425, 19: 0.0273075, 29: 0.0281775, 15: 0.02785})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4637925})
+    LATENCY
+     * MEAN: 6.058425
+
+EXPERIMENT 46/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5352875
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.01344, 1: 0.013665, 5: 0.0069675, 6: 0.0073725, 4: 0.0074175, 3: 0.0072075, 14: 0.004085, 10: 0.0041425, 12: 0.0041125, 7: 0.00419, 8: 0.00427, 30: 0.0279125, 9: 0.00428, 13: 0.00426, 22: 0.0279625, 28: 0.02781, 20: 0.02731, 18: 0.0281325, 23: 0.02846, 27: 0.0277, 15: 0.0281775, 17: 0.02744, 29: 0.0276675, 26: 0.027815, 19: 0.0282725, 24: 0.028065, 21: 0.02718, 25: 0.02808, 16: 0.027705, 11: 0.0041875})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4647125})
+    LATENCY
+     * MEAN: 6.077532174985938
+
+EXPERIMENT 47/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.535405
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0132175, 2: 0.013495, 3: 0.007115, 6: 0.0070975, 4: 0.0073775, 5: 0.007205, 8: 0.0042925, 7: 0.0040675, 14: 0.0041275, 9: 0.00411, 27: 0.0274725, 15: 0.0277425, 11: 0.00424, 10: 0.0042975, 16: 0.0275925, 21: 0.0283475, 13: 0.0041575, 30: 0.0273975, 18: 0.027925, 12: 0.0043075, 23: 0.02849, 17: 0.0281475, 20: 0.0278575, 29: 0.0281075, 28: 0.02817, 24: 0.02816, 22: 0.0281425, 25: 0.027115, 26: 0.0276225, 19: 0.0280075})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.464595})
+    LATENCY
+     * MEAN: 6.238098300012286
+
+EXPERIMENT 48/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.49707
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.00949, 2: 0.0095325, 6: 0.0052175, 3: 0.00518, 5: 0.00516, 4: 0.0050375, 13: 0.0031125, 8: 0.00306, 12: 0.0031175, 9: 0.00306, 10: 0.0030375, 23: 0.026555, 11: 0.0031225, 18: 0.0275725, 7: 0.0031025, 20: 0.0273475, 30: 0.0277575, 14: 0.003185, 17: 0.027, 19: 0.0268575, 26: 0.02681, 22: 0.0280775, 27: 0.0276875, 16: 0.02704, 15: 0.02687, 21: 0.027155, 25: 0.0264225, 29: 0.026265, 28: 0.0265225, 24: 0.026715})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.50293})
+    LATENCY
+     * MEAN: 513.4946298752991
+
+EXPERIMENT 49/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.49709
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.008675, 2: 0.00831, 4: 0.004745, 5: 0.0047575, 6: 0.0047225, 12: 0.0028825, 3: 0.0046975, 13: 0.0028325, 11: 0.002815, 14: 0.00284, 8: 0.0027825, 9: 0.002705, 7: 0.0028375, 28: 0.02744, 10: 0.0028725, 20: 0.02668, 23: 0.027815, 18: 0.0265875, 30: 0.02722, 24: 0.0280975, 22: 0.0277275, 29: 0.02696, 19: 0.02771, 27: 0.0282, 17: 0.0269375, 16: 0.02732, 15: 0.027525, 21: 0.02783, 26: 0.026785, 25: 0.02778})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.50291})
+    LATENCY
+     * MEAN: 1013.0967676002675
+
+EXPERIMENT 50/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.505625
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.007685, 2: 0.007735, 4: 0.00424, 6: 0.0042375, 5: 0.0042175, 3: 0.00437, 9: 0.002625, 8: 0.002605, 11: 0.0026125, 7: 0.00271, 14: 0.00271, 10: 0.002645, 29: 0.0289775, 13: 0.0025675, 15: 0.0282975, 19: 0.0284625, 12: 0.002745, 23: 0.0283025, 18: 0.02812, 27: 0.0279625, 20: 0.0276425, 30: 0.0278975, 24: 0.028565, 17: 0.0283575, 25: 0.0287, 28: 0.0285225, 26: 0.02813, 16: 0.0272725, 21: 0.0279225, 22: 0.0287875})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.494375})
+    LATENCY
+     * MEAN: 1467.218388249518
+
+EXPERIMENT 51/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5077175
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.007205, 1: 0.0075325, 4: 0.004195, 5: 0.0042175, 6: 0.00415, 3: 0.0040225, 13: 0.002505, 14: 0.00252, 9: 0.0025075, 12: 0.0025975, 11: 0.002545, 27: 0.0286, 28: 0.0286375, 10: 0.002505, 20: 0.0279475, 29: 0.02904, 7: 0.00256, 23: 0.02892, 22: 0.02803, 8: 0.002605, 30: 0.02878, 21: 0.028135, 24: 0.0277725, 17: 0.02922, 15: 0.0283975, 19: 0.0280675, 25: 0.0289125, 16: 0.0289825, 26: 0.028395, 18: 0.0282125})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4922825})
+    LATENCY
+     * MEAN: 1919.7746030003084
+
+EXPERIMENT 52/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51718
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.00707, 2: 0.00687, 6: 0.0039175, 5: 0.0038975, 4: 0.0040625, 3: 0.003935, 7: 0.0024175, 8: 0.0025275, 11: 0.002335, 29: 0.02969, 10: 0.002375, 13: 0.002425, 21: 0.0291375, 15: 0.0295675, 9: 0.0024475, 14: 0.0024775, 12: 0.002455, 27: 0.02941, 24: 0.029265, 18: 0.028165, 23: 0.0288925, 22: 0.028525, 20: 0.0298675, 17: 0.029455, 16: 0.0291275, 25: 0.03015, 19: 0.0292325, 28: 0.0289625, 30: 0.0290525, 26: 0.0294675})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48282})
+    LATENCY
+     * MEAN: 2307.2618333248456
+
+EXPERIMENT 53/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.52194
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0067525, 1: 0.0064725, 5: 0.003635, 3: 0.0036325, 6: 0.003785, 4: 0.003665, 8: 0.0024825, 9: 0.002515, 14: 0.0022975, 11: 0.002495, 13: 0.002425, 12: 0.0022975, 7: 0.0023575, 23: 0.028765, 10: 0.0024375, 19: 0.0296975, 18: 0.0291075, 28: 0.0298075, 24: 0.029415, 16: 0.0300225, 27: 0.02967, 21: 0.02964, 20: 0.0302375, 30: 0.029625, 22: 0.0298125, 29: 0.0300775, 15: 0.0299125, 17: 0.0295225, 26: 0.029915, 25: 0.0294625})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.47806})
+    LATENCY
+     * MEAN: 2726.0788447994905
+
+EXPERIMENT 54/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.515465
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0063, 2: 0.0063375, 6: 0.003585, 4: 0.003815, 5: 0.0035375, 10: 0.00235, 14: 0.00236, 7: 0.0023425, 8: 0.0023325, 22: 0.029195, 3: 0.003605, 11: 0.0022925, 12: 0.0023425, 15: 0.03022, 9: 0.002295, 18: 0.029385, 20: 0.029515, 19: 0.0295825, 21: 0.0292275, 16: 0.029395, 13: 0.0023475, 26: 0.0292725, 17: 0.02911, 23: 0.0291925, 29: 0.0285375, 24: 0.0297275, 30: 0.0297125, 25: 0.0293825, 28: 0.0289875, 27: 0.02918})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.484535})
+    LATENCY
+     * MEAN: 3272.3739284003805
+
+EXPERIMENT 55/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 15, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:15
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5108775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0059475, 1: 0.006235, 5: 0.0034575, 3: 0.0035475, 4: 0.00355, 8: 0.002185, 6: 0.0035125, 7: 0.0023275, 14: 0.002315, 9: 0.0022825, 25: 0.0288675, 26: 0.0295225, 17: 0.02979, 10: 0.0020975, 11: 0.0020875, 13: 0.002215, 19: 0.0291625, 18: 0.02923, 24: 0.028695, 15: 0.0286875, 21: 0.029235, 22: 0.0289975, 27: 0.0294975, 29: 0.02974, 28: 0.0287875, 30: 0.028505, 16: 0.0292, 20: 0.0294425, 12: 0.0021575, 23: 0.0296})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4891225})
+    LATENCY
+     * MEAN: 3820.21912850029
+
+EXPERIMENT 56/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.53497
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.013315, 2: 0.0134275, 4: 0.007225, 3: 0.007235, 5: 0.0073775, 6: 0.007335, 14: 0.004175, 12: 0.004265, 11: 0.0042325, 8: 0.0042375, 7: 0.004095, 9: 0.00428, 10: 0.0044225, 19: 0.0279425, 13: 0.004505, 16: 0.027835, 15: 0.02832, 18: 0.0276825, 26: 0.02747, 20: 0.0275675, 23: 0.027735, 27: 0.02761, 22: 0.0276325, 25: 0.027255, 24: 0.0282975, 17: 0.027945, 28: 0.02773, 29: 0.0279025, 30: 0.0280525, 21: 0.027865})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.46503})
+    LATENCY
+     * MEAN: 6.06581
+
+EXPERIMENT 57/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5358575
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.013665, 1: 0.0136425, 5: 0.007245, 3: 0.007155, 6: 0.0070925, 4: 0.0073, 7: 0.0043525, 9: 0.00423, 13: 0.0042, 11: 0.0042775, 14: 0.004185, 8: 0.004235, 15: 0.0280725, 10: 0.00436, 25: 0.0278525, 12: 0.0040475, 28: 0.0275425, 16: 0.0283575, 29: 0.0277425, 21: 0.027365, 18: 0.0276625, 30: 0.02786, 24: 0.0281, 22: 0.0282575, 27: 0.0279425, 23: 0.027415, 20: 0.0278775, 26: 0.0279925, 17: 0.0275425, 19: 0.0282875})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4641425})
+    LATENCY
+     * MEAN: 6.074093149985982
+
+EXPERIMENT 58/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.534415
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.013695, 1: 0.0135525, 3: 0.0072675, 6: 0.00756, 4: 0.00745, 5: 0.0071825, 8: 0.0042725, 7: 0.0043375, 9: 0.00423, 10: 0.00427, 13: 0.0042625, 14: 0.004345, 12: 0.00416, 17: 0.0275225, 16: 0.0270675, 22: 0.0277375, 11: 0.0042825, 15: 0.0279175, 21: 0.02763, 20: 0.0274375, 23: 0.02831, 25: 0.02789, 30: 0.0283575, 28: 0.02799, 19: 0.0276025, 18: 0.027755, 27: 0.027585, 26: 0.0274725, 24: 0.0274475, 29: 0.027825})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.465585})
+    LATENCY
+     * MEAN: 6.26101770001212
+
+EXPERIMENT 59/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4976675
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0093775, 1: 0.0094675, 5: 0.00519, 4: 0.005015, 6: 0.0050625, 3: 0.0052775, 11: 0.0030475, 12: 0.003055, 13: 0.003, 14: 0.0031375, 7: 0.003105, 10: 0.0030925, 9: 0.0029925, 23: 0.02647, 8: 0.003065, 22: 0.027025, 29: 0.027245, 30: 0.0272625, 26: 0.02804, 25: 0.02716, 18: 0.027075, 24: 0.02719, 27: 0.0269475, 16: 0.026615, 20: 0.0269325, 28: 0.0272525, 17: 0.0269925, 19: 0.0272375, 21: 0.0268525, 15: 0.027485})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5023325})
+    LATENCY
+     * MEAN: 510.47809337530435
+
+EXPERIMENT 60/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.501525
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0084825, 1: 0.0086575, 6: 0.0045, 5: 0.004635, 11: 0.002925, 3: 0.004715, 14: 0.002875, 4: 0.00474, 10: 0.0028375, 8: 0.0028625, 9: 0.0028975, 29: 0.02812, 13: 0.00293, 7: 0.00287, 12: 0.0027525, 17: 0.0276425, 18: 0.0272825, 28: 0.0275575, 20: 0.0278925, 26: 0.02758, 27: 0.0276175, 15: 0.0273575, 21: 0.0274575, 25: 0.02738, 16: 0.027625, 22: 0.0277975, 30: 0.0277125, 19: 0.0284125, 24: 0.0282125, 23: 0.0271975})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.498475})
+    LATENCY
+     * MEAN: 989.5403150002443
+
+EXPERIMENT 61/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.503225
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.007775, 1: 0.00772, 5: 0.0045225, 6: 0.0045575, 3: 0.0044575, 4: 0.0043275, 12: 0.0026225, 11: 0.0026275, 13: 0.0026775, 9: 0.0025875, 10: 0.0026625, 14: 0.0025025, 25: 0.0285925, 8: 0.002705, 7: 0.0026575, 23: 0.0281475, 19: 0.0279675, 27: 0.02857, 26: 0.028555, 15: 0.028375, 21: 0.0276175, 18: 0.02782, 17: 0.02821, 28: 0.027885, 24: 0.0276875, 29: 0.027645, 16: 0.028275, 22: 0.0276225, 30: 0.0277325, 20: 0.02812})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.496775})
+    LATENCY
+     * MEAN: 1474.5282134995362
+
+EXPERIMENT 62/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5058125
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0072275, 1: 0.00702, 4: 0.0040675, 5: 0.0041475, 6: 0.00403, 3: 0.004175, 13: 0.0024675, 14: 0.00244, 12: 0.00258, 8: 0.00251, 11: 0.0025125, 7: 0.00253, 30: 0.02845, 10: 0.002455, 9: 0.0025225, 20: 0.02906, 26: 0.0287525, 28: 0.0287825, 22: 0.02783, 25: 0.0285025, 24: 0.0283575, 17: 0.028275, 23: 0.027925, 19: 0.028475, 29: 0.028275, 16: 0.028405, 21: 0.02824, 15: 0.0285375, 18: 0.02842, 27: 0.02884})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4941875})
+    LATENCY
+     * MEAN: 1933.1347498002865
+
+EXPERIMENT 63/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5170925
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.006845, 4: 0.00398, 5: 0.00383, 2: 0.0069325, 3: 0.0039725, 9: 0.002395, 8: 0.0025125, 10: 0.0023825, 7: 0.002545, 6: 0.004015, 14: 0.00242, 21: 0.0294275, 18: 0.0282675, 17: 0.0302425, 22: 0.0295325, 11: 0.0024075, 19: 0.03, 13: 0.0024325, 20: 0.0295175, 26: 0.028855, 12: 0.0024, 23: 0.0291975, 27: 0.02936, 15: 0.02908, 16: 0.029145, 29: 0.028785, 30: 0.0291425, 28: 0.029755, 25: 0.02871, 24: 0.029005})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4829075})
+    LATENCY
+     * MEAN: 2310.5653409998617
+
+EXPERIMENT 64/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5227425
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.006605, 1: 0.0067425, 6: 0.003675, 5: 0.0038775, 3: 0.0038425, 8: 0.0024, 14: 0.0023275, 4: 0.00375, 25: 0.029715, 13: 0.00231, 9: 0.0023675, 10: 0.002445, 20: 0.0300475, 27: 0.0303475, 29: 0.0299475, 11: 0.0024, 7: 0.0023525, 17: 0.0296225, 12: 0.00235, 21: 0.02984, 19: 0.029385, 16: 0.0298575, 22: 0.0294425, 30: 0.02983, 15: 0.0298575, 28: 0.0297725, 24: 0.02954, 26: 0.0293575, 18: 0.0292675, 23: 0.0294675})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4772575})
+    LATENCY
+     * MEAN: 2714.5343851994903
+
+EXPERIMENT 65/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5187275
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.006265, 2: 0.0062225, 3: 0.0035825, 4: 0.0036, 6: 0.0035775, 5: 0.0036525, 8: 0.002195, 9: 0.0023725, 10: 0.0022425, 11: 0.0022725, 14: 0.0023075, 13: 0.0023775, 7: 0.00225, 12: 0.00238, 15: 0.0296775, 16: 0.0291125, 24: 0.0300325, 20: 0.029365, 21: 0.0293275, 27: 0.029605, 18: 0.029965, 23: 0.0292025, 30: 0.029955, 17: 0.02921, 25: 0.02957, 19: 0.0293025, 29: 0.0301275, 26: 0.02993, 28: 0.0302975, 22: 0.02875})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4812725})
+    LATENCY
+     * MEAN: 3228.544805975397
+
+EXPERIMENT 66/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 20, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:20
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5149825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0059575, 1: 0.0060325, 4: 0.0035, 3: 0.003515, 7: 0.0022375, 5: 0.0033775, 8: 0.00219, 10: 0.002265, 9: 0.0023275, 22: 0.02946, 6: 0.0034125, 12: 0.0022125, 11: 0.00219, 15: 0.0298225, 14: 0.0022125, 21: 0.029965, 13: 0.0020075, 16: 0.028855, 26: 0.0299175, 18: 0.0294175, 24: 0.0294925, 17: 0.0294375, 28: 0.0296925, 23: 0.0293175, 27: 0.02944, 29: 0.0294475, 19: 0.0293075, 20: 0.029225, 25: 0.0291975, 30: 0.02955})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4850175})
+    LATENCY
+     * MEAN: 3755.433160250298
+
+EXPERIMENT 67/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.534955
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0136225, 2: 0.01372, 6: 0.0075225, 5: 0.00714, 3: 0.0073775, 9: 0.0042075, 14: 0.004285, 4: 0.0071275, 10: 0.0042975, 8: 0.00424, 13: 0.0042275, 7: 0.004305, 21: 0.028165, 19: 0.02758, 12: 0.0044275, 20: 0.0279275, 16: 0.02789, 11: 0.0042825, 28: 0.02718, 26: 0.0279625, 25: 0.0277225, 17: 0.0281675, 27: 0.027675, 29: 0.0275825, 18: 0.0277175, 30: 0.027695, 22: 0.028075, 15: 0.027395, 23: 0.027515, 24: 0.0279225})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.465045})
+    LATENCY
+     * MEAN: 6.06963
+
+EXPERIMENT 68/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5341375
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.013615, 2: 0.01365, 5: 0.0073675, 6: 0.0072975, 4: 0.0070175, 3: 0.007275, 13: 0.004365, 14: 0.004345, 8: 0.00434, 11: 0.0041275, 10: 0.0042, 21: 0.0280175, 7: 0.0043925, 29: 0.02756, 9: 0.004415, 26: 0.0279675, 12: 0.00439, 17: 0.027325, 22: 0.0274725, 15: 0.0273725, 20: 0.02792, 24: 0.0278375, 16: 0.027485, 23: 0.0273025, 30: 0.0280625, 19: 0.027805, 18: 0.0276025, 28: 0.0278325, 25: 0.027755, 27: 0.0280225})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4658625})
+    LATENCY
+     * MEAN: 6.089711799985778
+
+EXPERIMENT 69/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.02, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.02
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5343825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0138625, 1: 0.0134025, 5: 0.0072275, 6: 0.007465, 4: 0.0071525, 3: 0.0071925, 10: 0.0042775, 13: 0.0043275, 14: 0.004185, 7: 0.0043375, 8: 0.004165, 9: 0.0043625, 12: 0.00422, 23: 0.0278225, 16: 0.0277925, 26: 0.0278375, 15: 0.0276675, 18: 0.027565, 28: 0.0277175, 19: 0.0278525, 20: 0.0276275, 25: 0.0278825, 24: 0.0273575, 29: 0.0279075, 27: 0.027765, 11: 0.0043775, 17: 0.027235, 30: 0.02769, 22: 0.028045, 21: 0.0280625})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4656175})
+    LATENCY
+     * MEAN: 6.2620275000126755
+
+EXPERIMENT 70/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.03, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.03
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.49811
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.00964, 2: 0.0094475, 4: 0.0050675, 3: 0.00521, 6: 0.0051725, 5: 0.0051875, 13: 0.0030825, 9: 0.0031775, 10: 0.00306, 8: 0.0031125, 7: 0.003, 11: 0.003065, 12: 0.0030575, 15: 0.026655, 14: 0.00312, 16: 0.0272775, 22: 0.027205, 20: 0.0264175, 19: 0.02722, 28: 0.0273925, 17: 0.0269, 25: 0.026815, 21: 0.02698, 23: 0.0263575, 18: 0.0273075, 30: 0.027585, 29: 0.026845, 27: 0.0276675, 26: 0.0273925, 24: 0.0276925})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.50189})
+    LATENCY
+     * MEAN: 507.614408300298
+
+EXPERIMENT 71/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.04, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.04
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.500805
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0083875, 2: 0.0085525, 3: 0.00462, 4: 0.004645, 5: 0.0048725, 6: 0.0047475, 9: 0.00294, 12: 0.00278, 13: 0.0028675, 8: 0.00282, 7: 0.002825, 10: 0.0027125, 17: 0.0275625, 18: 0.027665, 14: 0.002705, 27: 0.0280175, 26: 0.0274875, 28: 0.028015, 20: 0.0276, 15: 0.02716, 22: 0.02743, 16: 0.027615, 11: 0.002685, 21: 0.0276325, 25: 0.0276375, 30: 0.0275475, 23: 0.027515, 29: 0.0275325, 24: 0.0281725, 19: 0.028055})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.499195})
+    LATENCY
+     * MEAN: 995.7127520002531
+
+EXPERIMENT 72/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5016475
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.00782, 5: 0.00453, 1: 0.0076475, 6: 0.0043075, 3: 0.0044625, 4: 0.0043225, 13: 0.00267, 12: 0.00263, 8: 0.0025275, 11: 0.002795, 25: 0.0286625, 14: 0.002725, 7: 0.002495, 10: 0.00266, 29: 0.028055, 21: 0.027865, 26: 0.0278475, 9: 0.0025425, 15: 0.0275325, 27: 0.02811, 30: 0.02843, 23: 0.0276675, 24: 0.027785, 22: 0.0276875, 19: 0.0280475, 20: 0.0273475, 28: 0.028795, 18: 0.0275875, 16: 0.028075, 17: 0.0280175})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4983525})
+    LATENCY
+     * MEAN: 1494.9775219995224
+
+EXPERIMENT 73/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.06, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.06
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5091075
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0072825, 1: 0.00736, 4: 0.00407, 6: 0.00406, 5: 0.00429, 3: 0.00428, 11: 0.0024625, 14: 0.00255, 8: 0.0025225, 10: 0.0025125, 12: 0.002585, 7: 0.002535, 18: 0.0285175, 15: 0.02823, 13: 0.00246, 9: 0.002615, 27: 0.028715, 21: 0.02817, 16: 0.0286975, 23: 0.0288025, 24: 0.0291275, 20: 0.02797, 22: 0.028555, 30: 0.0288525, 28: 0.0287075, 29: 0.0288725, 25: 0.0283475, 17: 0.028715, 19: 0.0285875, 26: 0.028655})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4908925})
+    LATENCY
+     * MEAN: 1910.4534979503135
+
+EXPERIMENT 74/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.07, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.07
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51805
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0069375, 2: 0.00685, 4: 0.004005, 3: 0.00394, 6: 0.00415, 8: 0.0024675, 5: 0.0039, 10: 0.0024775, 7: 0.0024, 9: 0.00249, 12: 0.002435, 13: 0.002525, 22: 0.029285, 11: 0.0024525, 15: 0.0288125, 17: 0.029685, 14: 0.0025775, 29: 0.0297275, 25: 0.0295225, 16: 0.0293325, 28: 0.0294825, 18: 0.02954, 26: 0.029305, 30: 0.029795, 20: 0.028485, 21: 0.0288025, 19: 0.028815, 24: 0.029315, 23: 0.0292425, 27: 0.029295})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48195})
+    LATENCY
+     * MEAN: 2298.743715124839
+
+EXPERIMENT 75/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.522715
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0066475, 2: 0.0067775, 4: 0.00367, 3: 0.003775, 5: 0.0038025, 8: 0.00232, 6: 0.0038175, 9: 0.0023675, 11: 0.002405, 18: 0.0299375, 23: 0.0290775, 22: 0.029715, 7: 0.002175, 12: 0.0024675, 28: 0.0296975, 14: 0.0024425, 24: 0.02986, 10: 0.0023375, 17: 0.02956, 29: 0.0304225, 27: 0.030045, 15: 0.0300625, 16: 0.029115, 21: 0.0299475, 20: 0.030085, 13: 0.0023525, 26: 0.02992, 30: 0.03003, 25: 0.029025, 19: 0.0288575})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.477285})
+    LATENCY
+     * MEAN: 2715.1329859994917
+
+EXPERIMENT 76/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.09, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.09
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5160775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.006285, 6: 0.0036275, 1: 0.0064525, 5: 0.003655, 4: 0.00385, 13: 0.002235, 14: 0.00224, 3: 0.003655, 11: 0.00238, 30: 0.0296125, 10: 0.00232, 8: 0.00226, 7: 0.0021775, 23: 0.0290675, 24: 0.0293875, 12: 0.0023, 27: 0.0298625, 9: 0.0022775, 29: 0.02883, 16: 0.02952, 18: 0.0297425, 26: 0.029735, 19: 0.02966, 22: 0.0290975, 15: 0.028595, 21: 0.0293, 25: 0.02982, 28: 0.02886, 17: 0.0292125, 20: 0.03006})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4839225})
+    LATENCY
+     * MEAN: 3269.4557914503853
+
+EXPERIMENT 77/77:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 100, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 25, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.5
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:25
+                                                								signle_cache_write_penalty:0
+                                                								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.51312
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0061225, 2: 0.0059625, 4: 0.0035125, 3: 0.0033425, 10: 0.0021625, 6: 0.0035575, 5: 0.0034875, 13: 0.0021425, 9: 0.0022875, 14: 0.0023175, 12: 0.0022325, 7: 0.0021875, 11: 0.002235, 20: 0.0295375, 17: 0.0292175, 8: 0.0022175, 18: 0.0292225, 24: 0.0292825, 22: 0.029255, 28: 0.0291825, 19: 0.0295225, 21: 0.0291025, 29: 0.028765, 30: 0.0292425, 15: 0.028855, 16: 0.0293375, 26: 0.02977, 23: 0.02954, 27: 0.029845, 25: 0.029675})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.48688})
+    LATENCY
+     * MEAN: 3781.134792750287
+
+

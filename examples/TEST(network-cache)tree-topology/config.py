@@ -35,9 +35,9 @@ RESULTS_FORMAT = 'PICKLE'
 DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.5]
+NETWORK_CACHE = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
 
-CACHE_READ_PENALTIES = [0, 2, 6, 8, 10, 12, 14, 16]
+CACHE_READ_PENALTIES = [0]
 CACHE_WRITE_PENALTIES = [0]
 
 READ_QUEUE_SIZE_LIMITS = [10]
@@ -50,9 +50,9 @@ EXPERIMENT_QUEUE = deque()
 default = Tree()
 
 # Set topology
-default['topology']['name'] = 'PATH'
-default['topology']['n'] = 10
-default['topology']['delay'] = 10
+default['topology']['name'] = 'TREE'
+default['topology']['k'] = 2
+default['topology']['h'] = 5
 
 # Set workload
 default['workload'] = {
@@ -61,7 +61,7 @@ default['workload'] = {
          'n_warmup':   10 ** 2,
          'n_measured': 4 * 10 ** 5,
          'alpha':      1.0,
-         'rate':       1
+         'rate':       100
                        }
 
 # Set cache placement
@@ -94,10 +94,11 @@ for network_cache in NETWORK_CACHE:
                     experiment['netconf']['read_queue_size_limit'] = read_queue_size_limit
                     experiment['netconf']['single_cache_write_penalty'] = single_cache_write_penalty
                     experiment['netconf']['write_queue_size_limit'] = write_queue_size_limit
-                    experiment['desc'] = f'''Line topology with 10 nodes with:
-                                                            \t\t\t\t\t\t\t\tnetwork_cache:{network_cache}
-                                                            \t\t\t\t\t\t\t\tsingle_cache_read_penalty:{single_cache_read_penalty}
-                                                            \t\t\t\t\t\t\t\tread_queue_size_limit:{read_queue_size_limit}
-                                                            \t\t\t\t\t\t\t\tsignle_cache_write_penalty:{single_cache_write_penalty}
-                                                            \t\t\t\t\t\t\t\twrite_queue_size_limit:{write_queue_size_limit}'''
+                    experiment['desc'] = f'''Binary-tree topology with:
+                                                \t\t\t\t\t\t\t\theight:{experiment['topology']['h']}
+                                                \t\t\t\t\t\t\t\tnetwork_cache:{network_cache}
+                                                \t\t\t\t\t\t\t\tsingle_cache_read_penalty:{single_cache_read_penalty}
+                                                \t\t\t\t\t\t\t\tread_queue_size_limit:{read_queue_size_limit}
+                                                \t\t\t\t\t\t\t\tsignle_cache_write_penalty:{single_cache_write_penalty}
+                                                \t\t\t\t\t\t\t\twrite_queue_size_limit:{write_queue_size_limit}'''
                     EXPERIMENT_QUEUE.append(experiment)
