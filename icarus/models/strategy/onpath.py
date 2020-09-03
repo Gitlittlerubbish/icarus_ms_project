@@ -154,14 +154,14 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if node == receiver:
                 self.controller.end_flow_session(flow, log)
             else:
+                # current node write is not full, write the content
                 if self.view.get_node_write_queue_index(node) < self.view.get_write_queue_size_limit():
-                    # if self.view.has_cache(node):
-                    # self.controller.put_content_flow(node, content, flow)
                     self.controller.push_node_write_queue(node, flow)
                     idx = self.view.get_node_write_queue_index(node)
                     t_event = time + idx * self.view.get_single_cache_write_penalty()
                     self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
 
+                # no matter written or not, pass it down to the receiver
                 path = self.view.shortest_path(node, receiver)
                 self.controller.forward_content_hop_flow(node, path[1], flow, log)
                 delay = self.view.link_delay(node, path[1])
@@ -169,13 +169,14 @@ class LeaveCopyEverywherePacketLevel(Strategy):
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
         
         elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
             self.controller.pop_node_read_queue(node, flow)
             path = self.view.shortest_path(node, receiver)
             link_delay = self.view.link_delay(node, path[1])
             t_event = time + link_delay
             self.controller.forward_request_hop_flow(node, path[1], flow, log)
             self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
-            return
+            
 
         elif pkt_type == 'WriteComplete':
             self.controller.pop_node_write_queue(node, flow)
@@ -220,6 +221,70 @@ class LeaveCopyEverywhere(Strategy):
                 # insert content
                 self.controller.put_content(v)
         self.controller.end_session()
+
+@register_strategy('LCD_PKT_LEVEL')
+class LeaveCopyDownPacketLevel(Strategy):
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, **kwargs):
+        super(LeaveCopyDownPacketLevel, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, node, flow, pkt_type, log):
+        # get all required data
+        # Route requests to original source and queries caches on the path
+        if pkt_type == 'Request':
+            if node == receiver:
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
+                    return
+
+            # no cache get, forward request to the next node
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+    
+        elif pkt_type == 'Data':
+            if node == receiver:
+                self.controller.end_flow_session(flow, log)
+            else:
+                # no matter written or not, pass it down to the receiver
+                path = self.view.shortest_path(node, receiver)
+                self.controller.forward_content_hop_flow(node, path[1], flow, log)
+                delay = self.view.link_delay(node, path[1])
+                t_event = time + delay
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+
+        elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
+            self.controller.pop_node_read_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            
+            # make the node next level(but not receiver) cache the current content
+            if path[1] != receiver:
+                self.controller.push_node_write_queue(path[1], flow)
+                idx = self.view.get_node_write_queue_index(path[1])
+                t_event = time + idx * self.view.get_single_cache_write_penalty()
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
+
+        else:
+            raise ValueError('Invalid packet type')
 
 
 @register_strategy('LCD')
@@ -270,6 +335,85 @@ class LeaveCopyDown(Strategy):
                 copied = True
         self.controller.end_session()
 
+
+@register_strategy('PROB_CACHE_PKT_LEVEL')
+class ProbCachePacketLevel(Strategy):
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, t_tw=10):
+        super(ProbCachePacketLevel, self).__init__(view, controller)
+        self.t_tw = t_tw
+        self.cache_size = view.cache_nodes(size=True)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, node, flow, pkt_type, log):
+        # get all required data
+        # Route requests to original source and queries caches on the path
+        if pkt_type == 'Request':
+            if node == receiver:
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
+                    return
+
+            # no cache get, forward request to the next node
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+    
+        elif pkt_type == 'Data':
+            if node == receiver:
+                self.controller.end_flow_session(flow, log)
+            else:
+                # no matter written or not, pass it down to the receiver
+                path = self.view.shortest_path(node, receiver)
+                self.controller.forward_content_hop_flow(node, path[1], flow, log)
+                delay = self.view.link_delay(node, path[1])
+                t_event = time + delay
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+
+        elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
+            self.controller.pop_node_read_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            
+            # select prob_cache and write the content
+            c = len([node for node in path if self.view.has_cache(node)])
+            x = 0.0
+            for hop in range(1, len(path)):
+                # u = path[hop - 1]
+                v = path[hop]
+                N = sum([self.cache_size[n] for n in path[hop - 1:]
+                        if n in self.cache_size])
+                if v in self.cache_size:
+                    x += 1
+                if v != receiver and v in self.cache_size:
+                    # The (x/c) factor raised to the power of "c" according to the
+                    # extended version of ProbCache published in IEEE TPDS
+                    prob_cache = float(N) / (self.t_tw * self.cache_size[v]) * (x / c) ** c
+                    if random.random() < prob_cache:
+                        self.controller.push_node_write_queue(v, flow)
+                        idx = self.view.get_node_write_queue_index(v)
+                        t_event = time + idx * self.view.get_single_cache_write_penalty()
+                        self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': v, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
+
+        else:
+            raise ValueError('Invalid packet type')
 
 @register_strategy('PROB_CACHE')
 class ProbCache(Strategy):
@@ -341,6 +485,89 @@ class ProbCache(Strategy):
         self.controller.end_session()
 
 
+@register_strategy('CL4M_PKT_LEVEL')
+class CacheLessForMorePacketLevel(Strategy):
+    """Bernoulli random cache insertion.
+
+    In this strategy, a content is randomly inserted in a cache on the path
+    from serving node to receiver with probability *p*.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, use_ego_betw=False, **kwargs):
+        super(CacheLessForMorePacketLevel, self).__init__(view, controller)
+        topology = view.topology()
+        if use_ego_betw:
+            self.betw = dict((v, nx.betweenness_centrality(nx.ego_graph(topology, v))[v])
+                             for v in topology.nodes())
+        else:
+            self.betw = nx.betweenness_centrality(topology)
+    
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, node, flow, pkt_type, log):
+        # get all required data
+        # Route requests to original source and queries caches on the path
+        if pkt_type == 'Request':
+            if node == receiver:
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
+                    return
+
+            # no cache get, forward request to the next node
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+    
+        elif pkt_type == 'Data':
+            if node == receiver:
+                self.controller.end_flow_session(flow, log)
+            else:
+                # no matter written or not, pass it down to the receiver
+                path = self.view.shortest_path(node, receiver)
+                self.controller.forward_content_hop_flow(node, path[1], flow, log)
+                delay = self.view.link_delay(node, path[1])
+                t_event = time + delay
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+
+        elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
+            self.controller.pop_node_read_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            
+            # select cache and write the content
+            max_betw = -1
+            designated_cache = None
+            for v in path[1:]:
+                if self.view.has_cache(v):
+                    if self.betw[v] >= max_betw:
+                        max_betw = self.betw[v]
+                        designated_cache = v
+            if designated_cache:
+                self.controller.push_node_write_queue(designated_cache, flow)
+                idx = self.view.get_node_write_queue_index(designated_cache)
+                t_event = time + idx * self.view.get_single_cache_write_penalty()
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': designated_cache, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
+
+        else:
+            raise ValueError('Invalid packet type')
+
+
 @register_strategy('CL4M')
 class CacheLessForMore(Strategy):
     """Cache less for more strategy [4]_.
@@ -405,6 +632,80 @@ class CacheLessForMore(Strategy):
         self.controller.end_session()
 
 
+@register_strategy('RAND_BERNOULLI_PKT_LEVEL')
+class RandomBernoulliPacketLevel(Strategy):
+    """Bernoulli random cache insertion.
+
+    In this strategy, a content is randomly inserted in a cache on the path
+    from serving node to receiver with probability *p*.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, p=0.2, **kwargs):
+        super(RandomBernoulliPacketLevel, self).__init__(view, controller)
+        self.p = p
+    
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, node, flow, pkt_type, log):
+        # get all required data
+        # Route requests to original source and queries caches on the path
+        if pkt_type == 'Request':
+            if node == receiver:
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
+                    return
+
+            # no cache get, forward request to the next node
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+    
+        elif pkt_type == 'Data':
+            if node == receiver:
+                self.controller.end_flow_session(flow, log)
+            else:
+                # no matter written or not, pass it down to the receiver
+                path = self.view.shortest_path(node, receiver)
+                self.controller.forward_content_hop_flow(node, path[1], flow, log)
+                delay = self.view.link_delay(node, path[1])
+                t_event = time + delay
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+
+        elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
+            self.controller.pop_node_read_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            
+            # select random_cache and write the content
+            for u, v in path_links(path):
+            # self.controller.forward_content_hop(u, v)
+                if v != receiver and self.view.has_cache(v):
+                    if random.random() < self.p:
+                        self.controller.push_node_write_queue(v, flow)
+                        idx = self.view.get_node_write_queue_index(v)
+                        t_event = time + idx * self.view.get_single_cache_write_penalty()
+                        self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': v, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
+
+        else:
+            raise ValueError('Invalid packet type')
+
+
 @register_strategy('RAND_BERNOULLI')
 class RandomBernoulli(Strategy):
     """Bernoulli random cache insertion.
@@ -443,6 +744,73 @@ class RandomBernoulli(Strategy):
                 if random.random() < self.p:
                     self.controller.put_content(v)
         self.controller.end_session()
+
+
+@register_strategy('RAND_CHOICE_PKT_LEVEL')
+class RandomChoicePacketLevel(Strategy):
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, **kwargs):
+        super(RandomChoicePacketLevel, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, node, flow, pkt_type, log):
+        # get all required data
+        # Route requests to original source and queries caches on the path
+        if pkt_type == 'Request':
+            if node == receiver:
+                self.controller.start_flow_session(time, receiver, content, flow, log)
+            source = self.view.content_source(content)
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+                if self.controller.get_content_flow(node, content, flow, log):
+                    self.controller.push_node_read_queue(node, flow)
+                    idx = self.view.get_node_read_queue_index(node)
+                    t_event = time + idx * self.view.get_single_cache_read_penalty()
+                    self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': node, 'flow': flow, 'pkt_type': 'ReadComplete', 'log': log})
+                    return
+
+            # no cache get, forward request to the next node
+            path = self.view.shortest_path(node, source)
+            delay = self.view.link_delay(node, path[1])
+            t_event = time + delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Request', 'log': log} )
+    
+        elif pkt_type == 'Data':
+            if node == receiver:
+                self.controller.end_flow_session(flow, log)
+            else:
+                # no matter written or not, pass it down to the receiver
+                path = self.view.shortest_path(node, receiver)
+                self.controller.forward_content_hop_flow(node, path[1], flow, log)
+                delay = self.view.link_delay(node, path[1])
+                t_event = time + delay
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log})
+
+        elif pkt_type == 'ReadComplete':
+            # cache read complete, send the content back to the receiver
+            self.controller.pop_node_read_queue(node, flow)
+            path = self.view.shortest_path(node, receiver)
+            link_delay = self.view.link_delay(node, path[1])
+            t_event = time + link_delay
+            self.controller.forward_request_hop_flow(node, path[1], flow, log)
+            self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+            
+            # select random_cache and write the content
+            caches = [v for v in path[1:-1] if self.view.has_cache(v)]
+            designated_cache = random.choice(caches) if len(caches) > 0 else None
+            if designated_cache:
+                self.controller.push_node_write_queue(designated_cache, flow)
+                idx = self.view.get_node_write_queue_index(designated_cache)
+                t_event = time + idx * self.view.get_single_cache_write_penalty()
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': designated_cache, 'flow': flow, 'pkt_type': 'WriteComplete', 'log': log})
+
+        elif pkt_type == 'WriteComplete':
+            self.controller.pop_node_write_queue(node, flow)
+            self.controller.put_content_flow(node, content, flow)
+
+        else:
+            raise ValueError('Invalid packet type')
 
 
 @register_strategy('RAND_CHOICE')
