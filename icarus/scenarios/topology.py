@@ -114,7 +114,7 @@ def largest_connected_component_subgraph(topology):
 
 
 @register_topology_factory('TREE')
-def topology_tree(k, h, delay=1, **kwargs):
+def topology_tree(k, h, delay=10, **kwargs):
     """Returns a tree topology, with a source at the root, receivers at the
     leafs and caches at all intermediate nodes.
 

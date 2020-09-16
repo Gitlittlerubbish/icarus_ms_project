@@ -35,13 +35,12 @@ RESULTS_FORMAT = 'PICKLE'
 DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.3]
+NETWORK_CACHE = [0.8]
 
-# Unit second
-CACHE_READ_PENALTIES = [0, 0.01, 0.03, 0.05, 0.07, 0.09, 0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6]
-CACHE_WRITE_PENALTIES = [0.1]
+CACHE_READ_PENALTIES = [0]
+CACHE_WRITE_PENALTIES = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.10, 0.20, 0.30, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 2, 3]
 
-READ_QUEUE_SIZE_LIMITS = [3, 4, 5, 8, 10]
+READ_QUEUE_SIZE_LIMITS = [10]
 WRITE_QUEUE_SIZE_LIMITS = [5]
 
 # Queue of experiments
@@ -54,7 +53,6 @@ default = Tree()
 default['topology']['name'] = 'TREE'
 default['topology']['k'] = 2
 default['topology']['h'] = 5
-default['topology']['delay'] = 1
 
 # Set workload
 default['workload'] = {
@@ -86,8 +84,8 @@ default['strategy']['name'] = 'LCE_PKT_LEVEL'
 
 # Append experiment to queue
 for network_cache in NETWORK_CACHE:
-    for read_queue_size_limit in READ_QUEUE_SIZE_LIMITS:
-        for single_cache_read_penalty in CACHE_READ_PENALTIES:
+    for single_cache_read_penalty in CACHE_READ_PENALTIES:
+        for read_queue_size_limit in READ_QUEUE_SIZE_LIMITS:
             for single_cache_write_penalty in CACHE_WRITE_PENALTIES:
                 for write_queue_size_limit in WRITE_QUEUE_SIZE_LIMITS:
                     experiment = copy.deepcopy(default)

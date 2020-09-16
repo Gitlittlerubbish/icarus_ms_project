@@ -32,16 +32,16 @@ RESULTS_FORMAT = 'PICKLE'
  
 # List of metrics to be measured in the experiments
 # The implementation of data collectors are located in ./icarus/execution/collectors.py
-DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
+DATA_COLLECTORS = ['QUEUE_USAGE']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.3]
+NETWORK_CACHE = [0.2]
 
 # Unit second
-CACHE_READ_PENALTIES = [0, 0.01, 0.03, 0.05, 0.07, 0.09, 0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6]
-CACHE_WRITE_PENALTIES = [0.1]
+CACHE_READ_PENALTIES = [0.05, 0.08, 0.1, 0.2, 0.24,  0.26 ,0.28,0.3, 0.32, 0.35, 0.36, 0.38, 0.4, 0.5, 0.6, 0.7, 0.8]
+CACHE_WRITE_PENALTIES = [0.01]
 
-READ_QUEUE_SIZE_LIMITS = [3, 4, 5, 8, 10]
+READ_QUEUE_SIZE_LIMITS = [5]
 WRITE_QUEUE_SIZE_LIMITS = [5]
 
 # Queue of experiments
@@ -53,7 +53,7 @@ default = Tree()
 # Set topology
 default['topology']['name'] = 'TREE'
 default['topology']['k'] = 2
-default['topology']['h'] = 5
+default['topology']['h'] = 4
 default['topology']['delay'] = 1
 
 # Set workload

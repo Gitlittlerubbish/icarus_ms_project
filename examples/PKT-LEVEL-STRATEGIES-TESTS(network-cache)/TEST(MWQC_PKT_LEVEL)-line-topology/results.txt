@@ -1,0 +1,185 @@
+EXPERIMENT 1/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.1
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.349645
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.349645})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.650355})
+    LATENCY
+     * MEAN: 124.0568
+
+EXPERIMENT 2/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.2
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4449825
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.4449825})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.5550175})
+    LATENCY
+     * MEAN: 108.8028
+
+EXPERIMENT 3/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.3
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.4989775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.4989775})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.5010225})
+    LATENCY
+     * MEAN: 100.1636
+
+EXPERIMENT 4/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.4
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.4
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5428225
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.5428225})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4571775})
+    LATENCY
+     * MEAN: 93.1484
+
+EXPERIMENT 5/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.5
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.5737175
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.5737175})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4262825})
+    LATENCY
+     * MEAN: 88.2052
+
+EXPERIMENT 6/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.6
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.6
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.6013125
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.6013125})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3986875})
+    LATENCY
+     * MEAN: 83.79
+
+EXPERIMENT 7/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.7
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.6241225
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.6241225})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3758775})
+    LATENCY
+     * MEAN: 80.1404
+
+EXPERIMENT 8/8:
+  CONFIGURATION:
+   * topology -> name: PATH, n: 10, delay: 10
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.8
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: MWQC_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 10, single_cache_write_penalty: 0, write_queue_size_limit: 10
+   * desc -> Line topology with 10 nodes with:
+                                                            								network_cache:0.8
+                                                            								single_cache_read_penalty:0
+                                                            								read_queue_size_limit:10
+                                                            								signle_cache_write_penalty:0
+                                                            								write_queue_size_limit:10
+  RESULTS:
+    CACHE_HIT_RATIO
+     * MEAN: 0.6442975
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.6442975})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3557025})
+    LATENCY
+     * MEAN: 76.9124
+
+

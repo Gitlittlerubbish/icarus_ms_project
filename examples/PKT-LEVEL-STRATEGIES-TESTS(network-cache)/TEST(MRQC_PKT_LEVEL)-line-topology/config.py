@@ -35,14 +35,13 @@ RESULTS_FORMAT = 'PICKLE'
 DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.3]
+NETWORK_CACHE = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
 
-# Unit second
-CACHE_READ_PENALTIES = [0, 0.01, 0.03, 0.05, 0.07, 0.09, 0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6]
-CACHE_WRITE_PENALTIES = [0.1]
+CACHE_READ_PENALTIES = [0]
+CACHE_WRITE_PENALTIES = [0]
 
-READ_QUEUE_SIZE_LIMITS = [3, 4, 5, 8, 10]
-WRITE_QUEUE_SIZE_LIMITS = [5]
+READ_QUEUE_SIZE_LIMITS = [10]
+WRITE_QUEUE_SIZE_LIMITS = [10]
 
 # Queue of experiments
 EXPERIMENT_QUEUE = deque()
@@ -51,10 +50,9 @@ EXPERIMENT_QUEUE = deque()
 default = Tree()
 
 # Set topology
-default['topology']['name'] = 'TREE'
-default['topology']['k'] = 2
-default['topology']['h'] = 5
-default['topology']['delay'] = 1
+default['topology']['name'] = 'PATH'
+default['topology']['n'] = 10
+default['topology']['delay'] = 10
 
 # Set workload
 default['workload'] = {
@@ -76,7 +74,7 @@ default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = 'LRU'
 
 # Set caching meta-policy
-default['strategy']['name'] = 'LCE_PKT_LEVEL'
+default['strategy']['name'] = 'MRQC_PKT_LEVEL'
 
 # Set network configuration for NetworkModel
 # default['netconf']['read_queue_size_limit'] = 20
@@ -86,8 +84,8 @@ default['strategy']['name'] = 'LCE_PKT_LEVEL'
 
 # Append experiment to queue
 for network_cache in NETWORK_CACHE:
-    for read_queue_size_limit in READ_QUEUE_SIZE_LIMITS:
-        for single_cache_read_penalty in CACHE_READ_PENALTIES:
+    for single_cache_read_penalty in CACHE_READ_PENALTIES:
+        for read_queue_size_limit in READ_QUEUE_SIZE_LIMITS:
             for single_cache_write_penalty in CACHE_WRITE_PENALTIES:
                 for write_queue_size_limit in WRITE_QUEUE_SIZE_LIMITS:
                     experiment = copy.deepcopy(default)
@@ -96,11 +94,10 @@ for network_cache in NETWORK_CACHE:
                     experiment['netconf']['read_queue_size_limit'] = read_queue_size_limit
                     experiment['netconf']['single_cache_write_penalty'] = single_cache_write_penalty
                     experiment['netconf']['write_queue_size_limit'] = write_queue_size_limit
-                    experiment['desc'] = f'''Binary-tree topology with:
-                                                \t\t\t\t\t\t\t\theight:{experiment['topology']['h']}
-                                                \t\t\t\t\t\t\t\tnetwork_cache:{network_cache}
-                                                \t\t\t\t\t\t\t\tsingle_cache_read_penalty:{single_cache_read_penalty}
-                                                \t\t\t\t\t\t\t\tread_queue_size_limit:{read_queue_size_limit}
-                                                \t\t\t\t\t\t\t\tsignle_cache_write_penalty:{single_cache_write_penalty}
-                                                \t\t\t\t\t\t\t\twrite_queue_size_limit:{write_queue_size_limit}'''
+                    experiment['desc'] = f'''Line topology with 10 nodes with:
+                                                            \t\t\t\t\t\t\t\tnetwork_cache:{network_cache}
+                                                            \t\t\t\t\t\t\t\tsingle_cache_read_penalty:{single_cache_read_penalty}
+                                                            \t\t\t\t\t\t\t\tread_queue_size_limit:{read_queue_size_limit}
+                                                            \t\t\t\t\t\t\t\tsignle_cache_write_penalty:{single_cache_write_penalty}
+                                                            \t\t\t\t\t\t\t\twrite_queue_size_limit:{write_queue_size_limit}'''
                     EXPERIMENT_QUEUE.append(experiment)

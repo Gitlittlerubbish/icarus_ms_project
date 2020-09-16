@@ -20,6 +20,7 @@ from icarus.util import Tree, inheritdoc
 __all__ = [
     'DataCollector',
     'CollectorProxy',
+    'QueueUsageCollector',
     'CacheHitRatioCollector',
     'LinkLoadCollector',
     'LatencyCollector',
@@ -358,6 +359,42 @@ class CollectorProxy(DataCollector):
     def results(self):
         return Tree(**{c.name: c.results() for c in self.collectors['results']})
 
+@register_data_collector('QUEUE_USAGE')
+class QueueUsageCollector(DataCollector):
+    """
+        Data collector measuring the read/write queue usage
+    """
+    def __init__(self, view, snapshot_interval=3):
+        self.view = view
+        self.snapshot_interval = snapshot_interval
+        self.routers = [v for v in self.view.topology().nodes()
+                     if self.view.topology().node[v]['stack'][0] == 'router']
+        self.sess_count = 0
+        self.snapshot_count = 0
+        self.rq_used = 0
+        self.wq_used = 0
+
+    @inheritdoc(DataCollector)
+    def start_flow_session(self, timestamp, receiver, content, flow):
+        pass
+
+    @inheritdoc(DataCollector)
+    def end_flow_session(self, flow, success=True):
+        self.sess_count += 1
+        
+        if self.sess_count == self.snapshot_interval:
+            self.sess_count = 0
+            self.snapshot_count += 1
+            for node in self.routers:
+                self.rq_used += self.view.get_node_read_queue_index(node)
+                self.wq_used += self.view.get_node_write_queue_index(node)
+
+    @inheritdoc(DataCollector)
+    def results(self):
+        results = Tree({'MEAN_RQ_USAGE': self.rq_used / (self.snapshot_count * self.view.get_read_queue_size_limit() * len(self.routers)),
+                        'MEAN_WQ_USAGE': self.wq_used / (self.snapshot_count * self.view.get_write_queue_size_limit() * len(self.routers))})
+        return results
+    
 @register_data_collector('LINK_LOAD')
 class LinkLoadCollector(DataCollector):
     """Data collector measuring the link load

@@ -1,0 +1,253 @@
+EXPERIMENT 1/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.0
+     * MEAN_WQ_USAGE: 0.0191359978399946
+
+EXPERIMENT 2/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.01, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.01
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.0029815574538936346
+     * MEAN_WQ_USAGE: 0.017340343350858378
+
+EXPERIMENT 3/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.05, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.05
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.006138015345038363
+     * MEAN_WQ_USAGE: 0.005656614141535354
+
+EXPERIMENT 4/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.08, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.08
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.009728724321810805
+     * MEAN_WQ_USAGE: 0.003559358898397246
+
+EXPERIMENT 5/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.1, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.1
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.015355338388345971
+     * MEAN_WQ_USAGE: 0.0028841072102680256
+
+EXPERIMENT 6/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.2, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.2
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.03972214930537327
+     * MEAN_WQ_USAGE: 0.0013289033222583057
+
+EXPERIMENT 7/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.3, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.3
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.08150880377200943
+     * MEAN_WQ_USAGE: 0.0007735019337548344
+
+EXPERIMENT 8/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.4, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.4
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.12672626681566704
+     * MEAN_WQ_USAGE: 0.0005570513926284816
+
+EXPERIMENT 9/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.5, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.5
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.20164160410401025
+     * MEAN_WQ_USAGE: 0.0005994514986287466
+
+EXPERIMENT 10/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.6, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.6
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.28007030017575046
+     * MEAN_WQ_USAGE: 0.0008405021012552531
+
+EXPERIMENT 11/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.7, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.7
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.32135310338275846
+     * MEAN_WQ_USAGE: 0.0008775521938804847
+
+EXPERIMENT 12/12:
+  CONFIGURATION:
+   * topology -> name: TREE, k: 2, h: 5, delay: 1
+   * workload -> name: STATIONARY_PACKET_LEVEL, n_contents: 10000, n_warmup: 400000, n_measured: 400000, alpha: 1.0, rate: 100
+   * cache_placement -> name: UNIFORM, network_cache: 0.2
+   * content_placement -> name: UNIFORM
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE_PKT_LEVEL
+   * netconf -> single_cache_read_penalty: 0.8, read_queue_size_limit: 5, single_cache_write_penalty: 0.01, write_queue_size_limit: 5
+   * desc -> Binary-tree topology with:
+                                                								height:5
+                                                								network_cache:0.2
+                                                								single_cache_read_penalty:0.8
+                                                								read_queue_size_limit:5
+                                                								signle_cache_write_penalty:0.01
+                                                								write_queue_size_limit:5
+  RESULTS:
+    QUEUE_USAGE
+     * MEAN_RQ_USAGE: 0.31277818194545487
+     * MEAN_WQ_USAGE: 0.0007278518196295491
+
+
