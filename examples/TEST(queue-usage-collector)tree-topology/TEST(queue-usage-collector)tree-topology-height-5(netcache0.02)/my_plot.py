@@ -4,7 +4,7 @@ import numpy as np
 
 
 MEAN_RQ_USAGE_LIST = []
-READ_QUEUE_SIZE_LIMITS = [0.03, 0.05, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.24, 0.26 ,0.28, 0.29, 0.3, 0.31, 0.32, 0.35, 0.36, 0.38, 0.4, 0.5, 0.6, 0.7, 0.8]
+CACHE_READ_PENALTIES = [0.03, 0.05, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.24, 0.26 ,0.28, 0.29, 0.3, 0.31, 0.32, 0.35, 0.36, 0.38, 0.4, 0.5, 0.6, 0.7, 0.8]
 tick = [0.03, 0.05, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.24, 0.26 ,0.28, 0.29, 0.3, 0.31, 0.32, 0.35, 0.36, 0.38, 0.4, 0.5, 0.6, 0.7, 0.8]
 base = len(tick)
 
@@ -22,11 +22,11 @@ def main():
     # create plots
     plt.bar(range(len(tick)), MEAN_RQ_USAGE_LIST, tick_label=tick)
     for x, y in zip(range(len(tick)), MEAN_RQ_USAGE_LIST):
-        plt.text(x + 0.05, y, '%.2f' % y, ha='center', va='bottom')
+        plt.text(x + 0.05, y, '%.3f' % y, ha='center', va='bottom')
     plt.xlabel('READ_QUEUE_SIZE')
     plt.ylabel('READ_QUEUE_USAGE')
-    plt.title(f'READ_QUEUE_USAGE vs READ_QUEUE_SIZE')
-    plt.savefig(f'READ_QUEUE_SIZE vs READ_QUEUE_SIZE)')
+    plt.title(f'READ_QUEUE_USAGE vs CACHE_READ_PENALTY')
+    plt.savefig(f'CACHE_READ_PENALTY vs READ_QUEUE_USAGE)')
     plt.show()
 
 

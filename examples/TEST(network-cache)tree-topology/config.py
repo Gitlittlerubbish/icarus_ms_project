@@ -35,13 +35,13 @@ RESULTS_FORMAT = 'PICKLE'
 DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+NETWORK_CACHE = [0.01, 0.02, 0.05, 0.08, 0.1, 0.2, 0.3, 0.4]
 
 CACHE_READ_PENALTIES = [0]
 CACHE_WRITE_PENALTIES = [0]
 
-READ_QUEUE_SIZE_LIMITS = [10]
-WRITE_QUEUE_SIZE_LIMITS = [10]
+READ_QUEUE_SIZE_LIMITS = [5]
+WRITE_QUEUE_SIZE_LIMITS = [5]
 
 # Queue of experiments
 EXPERIMENT_QUEUE = deque()
@@ -58,7 +58,7 @@ default['topology']['h'] = 5
 default['workload'] = {
          'name':       'STATIONARY_PACKET_LEVEL',
          'n_contents': 10 ** 4,
-         'n_warmup':   10 ** 2,
+         'n_warmup':   4 * 10 ** 5,
          'n_measured': 4 * 10 ** 5,
          'alpha':      1.0,
          'rate':       100

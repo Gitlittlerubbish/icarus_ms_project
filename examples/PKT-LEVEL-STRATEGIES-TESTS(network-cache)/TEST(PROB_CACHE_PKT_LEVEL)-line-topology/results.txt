@@ -15,11 +15,11 @@ EXPERIMENT 1/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.5887225
-     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0376275, 1: 0.4300625, 3: 0.0382475, 4: 0.0493325, 5: 0.0276675, 6: 0.0054775, 7: 0.0003075})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4112775})
+     * MEAN: 0.5838775
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.03899, 1: 0.4307925, 3: 0.0353275, 4: 0.0461625, 5: 0.0292725, 6: 0.00286, 7: 0.0004725})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.4161225})
     LATENCY
-     * MEAN: 93.84485
+     * MEAN: 94.22675
 
 EXPERIMENT 2/8:
   CONFIGURATION:
@@ -38,11 +38,11 @@ EXPERIMENT 2/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.6665975
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.5171875, 3: 0.04149, 2: 0.045045, 4: 0.039485, 5: 0.0203875, 6: 0.002995, 7: 7.5e-06})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3334025})
+     * MEAN: 0.6656575
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.04374, 1: 0.51766, 3: 0.0433375, 4: 0.0404425, 5: 0.0184275, 6: 0.002005, 7: 4.5e-05})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.3343425})
     LATENCY
-     * MEAN: 80.2054
+     * MEAN: 80.20975
 
 EXPERIMENT 3/8:
   CONFIGURATION:
@@ -61,11 +61,11 @@ EXPERIMENT 3/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.7079475
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.5685125, 3: 0.0455375, 2: 0.049425, 4: 0.033835, 5: 0.0092975, 6: 0.00105, 7: 0.00029})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2920525})
+     * MEAN: 0.7077925
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.56701, 2: 0.04961, 4: 0.0362225, 3: 0.0446625, 5: 0.0092475, 6: 0.0009475, 7: 9.25e-05})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2922075})
     LATENCY
-     * MEAN: 72.4521
+     * MEAN: 72.5509
 
 EXPERIMENT 4/8:
   CONFIGURATION:
@@ -84,11 +84,11 @@ EXPERIMENT 4/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.74017
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.605615, 2: 0.05218, 4: 0.0297225, 3: 0.0441625, 5: 0.00735, 6: 0.001135, 7: 5e-06})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.25983})
+     * MEAN: 0.7373
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.602995, 3: 0.0459025, 2: 0.05263, 5: 0.0067775, 4: 0.0283075, 6: 0.00068, 7: 7.5e-06})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2627})
     LATENCY
-     * MEAN: 66.86835
+     * MEAN: 67.23025
 
 EXPERIMENT 5/8:
   CONFIGURATION:
@@ -107,11 +107,11 @@ EXPERIMENT 5/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.7609525
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.62965, 2: 0.05491, 3: 0.04416, 4: 0.02618, 5: 0.0054375, 6: 0.000485, 7: 0.00013})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2390475})
+     * MEAN: 0.7612675
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.05334, 1: 0.630035, 3: 0.04331, 4: 0.02766, 5: 0.005865, 6: 0.000965, 7: 9.25e-05})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2387325})
     LATENCY
-     * MEAN: 63.1821
+     * MEAN: 63.2328
 
 EXPERIMENT 6/8:
   CONFIGURATION:
@@ -130,11 +130,11 @@ EXPERIMENT 6/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.7784975
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.65028, 2: 0.0565275, 4: 0.0226225, 3: 0.0436925, 5: 0.0048525, 6: 0.0004775, 7: 4.5e-05})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2215025})
+     * MEAN: 0.77762
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0551475, 3: 0.04225, 1: 0.6519375, 4: 0.0223975, 5: 0.00534, 6: 0.000525, 7: 2.25e-05})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.22238})
     LATENCY
-     * MEAN: 60.11735
+     * MEAN: 60.2
 
 EXPERIMENT 7/8:
   CONFIGURATION:
@@ -153,11 +153,11 @@ EXPERIMENT 7/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.79341
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.67037, 2: 0.056415, 5: 0.00445, 3: 0.0426425, 4: 0.0191025, 6: 0.0003925, 7: 3.75e-05})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.20659})
+     * MEAN: 0.7937175
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.05758, 1: 0.67082, 4: 0.019425, 3: 0.0421375, 5: 0.003515, 6: 0.0002375, 7: 2.5e-06})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.2062825})
     LATENCY
-     * MEAN: 57.4343
+     * MEAN: 57.31305
 
 EXPERIMENT 8/8:
   CONFIGURATION:
@@ -176,10 +176,10 @@ EXPERIMENT 8/8:
                                                             								write_queue_size_limit:10
   RESULTS:
     CACHE_HIT_RATIO
-     * MEAN: 0.8057525
-     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.05892, 3: 0.0422125, 1: 0.6857775, 4: 0.015495, 5: 0.002995, 6: 0.0003425, 7: 1e-05})
-     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.1942475})
+     * MEAN: 0.808
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.68748, 2: 0.0592625, 3: 0.04092, 5: 0.00375, 6: 0.0005375, 4: 0.0160125, 7: 3.75e-05})
+     * PER_NODE_SERVER_HIT_RATIO: Tree({9: 0.192})
     LATENCY
-     * MEAN: 55.15125
+     * MEAN: 54.86105
 
 

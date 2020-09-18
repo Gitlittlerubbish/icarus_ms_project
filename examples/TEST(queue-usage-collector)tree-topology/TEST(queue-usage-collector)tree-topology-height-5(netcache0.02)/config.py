@@ -35,7 +35,7 @@ RESULTS_FORMAT = 'PICKLE'
 DATA_COLLECTORS = ['QUEUE_USAGE']
 
 # Total size of network cache as a fraction of content population
-NETWORK_CACHE = [0.2]
+NETWORK_CACHE = [0.02]
 
 # Unit second
 CACHE_READ_PENALTIES = [0.03, 0.05, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.24, 0.26 ,0.28, 0.29, 0.3, 0.31, 0.32, 0.35, 0.36, 0.38, 0.4, 0.5, 0.6, 0.7, 0.8]
@@ -53,7 +53,7 @@ default = Tree()
 # Set topology
 default['topology']['name'] = 'TREE'
 default['topology']['k'] = 2
-default['topology']['h'] = 4
+default['topology']['h'] = 5
 default['topology']['delay'] = 1
 
 # Set workload

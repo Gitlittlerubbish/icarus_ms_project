@@ -142,7 +142,14 @@ class MaxWriteQueueCapacityPacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:     
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):     
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -224,7 +231,14 @@ class MaxReadQueueCapacityPacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:     
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):     
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -307,7 +321,14 @@ class LeaveCopyEverywherePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:     
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):     
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -409,7 +430,14 @@ class LeaveCopyDownPacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -527,7 +555,14 @@ class ProbCachePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -696,7 +731,14 @@ class CacheLessForMorePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -840,7 +882,14 @@ class RandomBernoulliPacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -950,7 +999,14 @@ class RandomChoicePacketLevel(Strategy):
             if node == receiver:
                 self.controller.start_flow_session(time, receiver, content, flow, log)
             source = self.view.content_source(content)
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()) or node == source:
+            if node == source:
+                path = self.view.shortest_path(node, receiver)
+                link_delay = self.view.link_delay(node, path[1])
+                t_event = time + link_delay
+                self.controller.forward_request_hop_flow(node, path[1], flow, log)
+                self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
+                return
+            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
