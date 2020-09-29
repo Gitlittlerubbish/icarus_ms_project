@@ -778,6 +778,13 @@ class NetworkController(object):
         else:
             return False
 
+    def query_content_flow(self, node, content, flow, log):
+        '''Only query if the node has the cache, in order to trigger the cache eviction policy
+
+        '''
+        if node in self.model.cache:
+            self.model.cache[node].get(content)
+
     def get_content_flow(self, node, content, flow, log):
         """Get a content from a server or a cache.
 
@@ -793,8 +800,6 @@ class NetworkController(object):
         """
         if node in self.model.cache:
             cache_hit = self.model.cache[node].get(content)
-
-
             if cache_hit:
                 if log:
                     self.collector.cache_hit_flow(node, content, flow)

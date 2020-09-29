@@ -32,7 +32,7 @@ RESULTS_FORMAT = 'PICKLE'
  
 # List of metrics to be measured in the experiments
 # The implementation of data collectors are located in ./icarus/execution/collectors.py
-DATA_COLLECTORS = ['CACHE_HIT_RATIO', 'LATENCY']
+DATA_COLLECTORS = ['CACHE_HIT_RATIO']
 
 # Total size of network cache as a fraction of content population
 NETWORK_CACHE = [0.8]
@@ -41,7 +41,7 @@ CACHE_READ_PENALTIES = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.10,
 CACHE_WRITE_PENALTIES = [0]
 
 READ_QUEUE_SIZE_LIMITS = [5]
-WRITE_QUEUE_SIZE_LIMITS = [10]
+WRITE_QUEUE_SIZE_LIMITS = [5]
 
 # Queue of experiments
 EXPERIMENT_QUEUE = deque()
@@ -58,8 +58,8 @@ default['topology']['h'] = 5
 default['workload'] = {
          'name':       'STATIONARY_PACKET_LEVEL',
          'n_contents': 10 ** 4,
-         'n_warmup':   4 * 10 ** 5,
-         'n_measured': 4 * 10 ** 5,
+         'n_warmup':   4 * 10 ** 7,
+         'n_measured': 4 * 10 ** 7,
          'alpha':      1.0,
          'rate':       100
                        }

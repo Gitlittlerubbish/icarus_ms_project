@@ -27,10 +27,10 @@ def main():
 
     # create plot
     tick = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.10, 0.20, 0.30, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 2, 3]
-    plt.bar(range(len(MEAN_CACHE_HIT_RATIO_LIST)), MEAN_CACHE_HIT_RATIO_LIST, color = 'b', tick_label = tick)
+    plt.bar(range(len(MEAN_CACHE_HIT_RATIO_LIST)), MEAN_CACHE_HIT_RATIO_LIST, tick_label = tick)
     for x, y in zip(range(len(tick)), MEAN_CACHE_HIT_RATIO_LIST):
             plt.text(x + 0.05, y, '%.2f' % y, ha='center', va='bottom')
-    plt.xlabel('WRITE_PENALTY')
+    plt.xlabel('WRITE_PENALTY (s)')
     plt.ylabel('MEAN_CACHE_HIT_RATIO')
     plt.title('MEAN_CACHE_HIT_RATIO vs WRITE_PENALTY')
     plt.savefig("MEAN_CACHE_HIT_RATIO vs WRITE_PENALTY.png")
@@ -44,6 +44,14 @@ def main():
     plt.title('MEAN_LATENCY vs WRITE_PENALTY')
     plt.savefig('MEAN_LATENCY vs WRITE_PENALTY.png')
     plt.show()
+    # x = range(len(tick))
+    # plt.plot(tick, MEAN_CACHE_HIT_RATIO_LIST)
+    
+    # plt.legend()
+    # plt.xlabel('CACHE_READ_PENALTY')
+    # plt.ylabel('MEAN_CACHE_HIT_RATIO')
+    # plt.savefig("MEAN_CACHE_HIT_RATIO vs NETWORK_CACHE.png")
+    # plt.show()
 
 
 if __name__ == "__main__":

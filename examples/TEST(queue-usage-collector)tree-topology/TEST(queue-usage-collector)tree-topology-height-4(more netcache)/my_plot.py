@@ -12,7 +12,7 @@ def main():
     current_line_ptr = True
     with open("results.txt", "r") as result_file:
         for line in result_file:
-            if "MEAN_RQ_USAGE:" in line:
+            if "MEAN_WQ_USAGE:" in line:
                 MEAN_RQ_USAGE_LIST.append(float(line.split(": ")[1].strip()))
                 
     print("Latency:")
@@ -23,10 +23,10 @@ def main():
     plt.bar(range(len(tick)), MEAN_RQ_USAGE_LIST, tick_label=tick)
     for x, y in zip(range(len(tick)), MEAN_RQ_USAGE_LIST):
         plt.text(x + 0.05, y, '%.3f' % y, ha='center', va='bottom')
-    plt.xlabel('READ_QUEUE_SIZE')
+    plt.xlabel('CACHE_READ_PENALTY')
     plt.ylabel('READ_QUEUE_USAGE')
-    plt.title(f'READ_QUEUE_USAGE vs READ_QUEUE_SIZE')
-    plt.savefig(f'READ_QUEUE_SIZE vs READ_QUEUE_SIZE)')
+    plt.title(f'READ_QUEUE_USAGE vs CACHE_READ_PENALTY')
+    plt.savefig(f'READ_QUEUE_SIZE vs CACHE_READ_PENALTY')
     plt.show()
 
 

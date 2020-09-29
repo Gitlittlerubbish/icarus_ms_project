@@ -328,7 +328,9 @@ class LeaveCopyEverywherePacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
-            if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):     
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
+            if self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit():     
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
                     idx = self.view.get_node_read_queue_index(node)
@@ -437,6 +439,8 @@ class LeaveCopyDownPacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
             if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
@@ -562,6 +566,8 @@ class ProbCachePacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
             if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
@@ -738,6 +744,8 @@ class CacheLessForMorePacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
             if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
@@ -889,6 +897,8 @@ class RandomBernoulliPacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
             if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
@@ -1006,6 +1016,8 @@ class RandomChoicePacketLevel(Strategy):
                 self.controller.forward_request_hop_flow(node, path[1], flow, log)
                 self.controller.add_event({'t_event': t_event, 'receiver': receiver, 'content': content, 'node': path[1], 'flow': flow, 'pkt_type': 'Data', 'log': log} )
                 return
+            if self.view.has_cache(node):
+                self.controller.query_content_flow(node, content, flow, log)
             if (self.view.has_cache(node) and self.view.get_node_read_queue_index(node) < self.view.get_read_queue_size_limit()):
                 if self.controller.get_content_flow(node, content, flow, log):
                     self.controller.push_node_read_queue(node, flow)
